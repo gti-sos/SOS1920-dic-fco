@@ -1,8 +1,10 @@
 const cool = require("cool-ascii-faces");
 const express = require("express");
+const bodyParser = require("body-parser");
+
 
 var app = express();
-
+app.use(bodyParser.json());
 
 var port = process.env.PORT || 80;
 
@@ -46,6 +48,18 @@ var cbp = [
 		aapc:0.41   
 	},
 ]
+
+const BASE_API_URL = "/api/v1";
+
+app.get(BASE_API_URL+"/cbp",(req,res) => {
+	res.send(JSON.stringify(cbp,null,2));
+});
+
+app.post(BASE_API_URL+"/cbp",(req,res) => {
+	cbp.push(req.body);
+	res.sendStatus(201,"CREATED");
+});
+
 
 app.get("/cool",(req,res) => {
 	res.send("<html>"+cool()+"</html>");
