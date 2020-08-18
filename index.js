@@ -12,7 +12,7 @@ app.get("/cool",(req,res) => {
 	res.send("<html>"+cool()+"</html>");
 });
 		
-app.listen(80, ()=>{
+app.listen(port, ()=>{
 	console.log("Server ready")
 });
 
