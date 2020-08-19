@@ -50,15 +50,26 @@ var cbp = [
 ]
 
 const BASE_API_URL = "/api/v1";
+//GETS
+
 
 app.get(BASE_API_URL+"/cbp",(req,res) => {
 	res.send(JSON.stringify(cbp,null,2));
 });
 
+
+
+
+
+
+
+//POSTS
+
 app.post(BASE_API_URL+"/cbp",(req,res) => {
 	cbp.push(req.body);
 	res.sendStatus(201,"CREATED");
 });
+
 
 
 app.get("/cool",(req,res) => {
