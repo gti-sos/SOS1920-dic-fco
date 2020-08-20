@@ -10,7 +10,7 @@ module.exports = function(app){
 	
 	const BASE_API_URL = "/api/v1";
 	
-var initialcbp = [
+	var initialcbp = [
 	
 	{
 		country:"India",
@@ -47,7 +47,14 @@ var initialcbp = [
 		pwp:1.07,
 		aapc:0.41   
 	},
-];
+	];
+	
+	
+	function deleteIDs (cbp){
+        cbp.forEach( (m) => {
+            delete m._id;
+        });
+    }
 	
 //INITIAL DATA	
 app.get(BASE_API_URL+"/cbp/loadInitialData",(req,res) =>{
@@ -67,9 +74,9 @@ app.get(BASE_API_URL+"/cbp", (req,res) =>{
 	
 	//if(req.query.country) request["country"] = req.query.country;
     if(req.query.year) req.query.year = parseInt(req.query.year);
-    if(req.query.cbp_country) req.query.cbp_country = parseInt(req.query.cbp_country);
-    if(req.query.cbp_per_capita) req.query.cbp_per_capita = parseFloat(req.query.cbp_per_capita);
-    if(req.query.cbp_cars) req.query.cbp_cars = parseInt(req.query.cbp_cars);
+    if(req.query.np) req.query.np = parseInt(req.query.np);
+    if(req.query.pwp) req.query.pwp = parseFloat(req.query.pwp);
+    if(req.query.aapc) req.query.aapc = parseFloat(req.query.aapc);
 	
 	var par = req.query;
     console.log(par);
@@ -116,12 +123,12 @@ app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 		res.send(JSON.stringify(cbp[0],null,2));
 		console.log("Data sent:"+JSON.stringify(cbp[0],null,2));
 	});
-	
 });
+	
 // POST 
 app.post(BASE_API_URL+"/cbp",(req,res) =>{
 	var newcbp = req.body;
-	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.cbp_country == null)||(newcbp.cbp_per_capita == null)||(newcbp.cbp_cars == null)){
+	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.np == null)||(newcbp.pwp == null)||(newcbp.aapc == null)){
 		res.sendStatus(400,"BAD REQUEST");
 	} else {
 		db.insert(newcbp); 	
