@@ -8,8 +8,6 @@ module.exports = function(app){
 				autoload: true
 	});
 	
-	console.log("ey");
-
 	const BASE_API_URL = "/api/v1";
 	
 	var initialcbp = [
