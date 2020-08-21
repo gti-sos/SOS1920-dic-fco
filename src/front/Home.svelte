@@ -1,9 +1,7 @@
 <main>
 
 	<div class="div-home" style="text-align:center">
-		<button type="button"   class="btn btn-outline-success"  onclick="window.location.href='#/ppaAPI'"> API de PPA</button>
-		<button type="button"   class="btn btn-outline-success"  onclick="window.location.href='#/gceAPI'"> API de GCE</button>
-		<button type="button"   class="btn btn-outline-success"  onclick="window.location.href='#*'"> API de EC</button>
+		<button type="button"   class="btn btn-outline-success"  onclick="window.location.href='#/cbpAPI'"> API de cbp</button>
 	</div>
 </main>
 <style>

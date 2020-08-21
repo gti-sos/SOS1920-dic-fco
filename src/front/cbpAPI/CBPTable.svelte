@@ -17,14 +17,15 @@
 
 	import { Pagination, PaginationItem, PaginationLink } from 'sveltestrap';
 
-	let ppas = [];
-	let newPPA = {
+	let cbp = [];
+	let newCBP = {
 		country: "",
 		year: ("") ,
-		aas_gross: "",
-		aas_net:"",
-		ppa_per_capita:""
+		np: "",
+		pwp:"",
+		aapc:""
 	};
+
 	let countries = [];
 	let years = [];
 	let currentCountry = "-";
@@ -35,18 +36,18 @@
 	let currentPage = 1; 
 	let moreData = true; 
 
-	onMount(getPpa);
+	onMount(getCBP);
 	onMount(getCountryYears);
 
 
 
 	async function ReloadTable() {
-		const res = await fetch("/api/v1/ppas/loadInitialData")
+		const res = await fetch("/api/v1/cbp/loadInitialData")
 
 		if (res.ok) {
-			const initialPPA = await res.json();
-			console.log("Contados "+ initialPPA.length +" datos de PPA")
-			getPpa();
+			const initialCBP = await res.json();
+			console.log("Contados "+ initialCBP.length +" datos de cbp")
+			getCBP();
 			responseAlert("Se ha reiniciado la tabla correctamente con los valores iniciales")
 		}else{
 			console.log("No se han cargado correctamente los datos iniciales")
@@ -56,7 +57,7 @@
 
 
 	async function getCountryYears() {
-		const res = await fetch("/api/v1/ppas"); 
+		const res = await fetch("/api/v1/cbp"); 
 
 		if (res.ok) {
 			const json = await res.json();
@@ -81,23 +82,22 @@
 
 	
 
+	async function getCBP(){
 
-	async function getPpa(){
-
-		console.log("Fetching ppas...");
-		const res = await fetch("/api/v1/ppas?offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages); 
+		console.log("Fetching cbp...");
+		const res = await fetch("/api/v1/cbp?offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages); 
 
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
-			ppas = json;
-			console.log("Received " + ppas.length + " ppas.");
+			cbp = json;
+			console.log("Received " + cbp.length + " cbp.");
 
-			if (ppas.length!=10){
+			if (cbp.length!=10){
 				moreData=false
 			} else{
 
-						const next = await fetch("/api/v1/ppas?offset=" + numberElementsPages * (offset+1) + "&limit=" + numberElementsPages); 
+						const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset+1) + "&limit=" + numberElementsPages); 
 						console.log("La variable NEXT tiene el estado: " + next.status)
 						const jsonNext = await next.json();
 						
@@ -116,28 +116,28 @@
 		}
 	}
 
-	async function insertPpa() {
+	async function insertCbp() {
 
-		console.log("Inserting ppas..." + JSON.stringify(newPPA));
+		console.log("Inserting cbp..." + JSON.stringify(newCBP));
 
-		if (newPPA.country == ""
-			|| newPPA.country == null
-			|| newPPA.year == "" 
-			|| newPPA.year == null) {
+		if (newCBP.country == ""
+			|| newCBP.country == null
+			|| newCBP.year == "" 
+			|| newCBP.year == null) {
 			
 			alert("Se debe incluir el nombre del país y el año obligatoriamente");
 
 		} else {
-				const res = await fetch("/api/v1/ppas", {
+				const res = await fetch("/api/v1/cbp", {
 					method: "POST",
-					body: JSON.stringify(newPPA),
+					body: JSON.stringify(newCBP),
 					headers: {
 						"Content-Type": "application/json"
 					}
 				}).then(function (res) {
 					if (res.ok){
-						getPpa();
-						responseAlert("Datos de " +newPPA.country + " añadidos correctamente")
+						getCBP();
+						responseAlert("Datos de " +newCBP.country + " añadidos correctamente")
 					} else{
 						errorResponse(res)
 					}
@@ -147,15 +147,14 @@
 	}
 
 
-	//Borramos un pais en un año concreto
-	async function deletePPA(country,year) {
-		console.log("Deleting marrriage..." + JSON.stringify(country)+ + JSON.stringify(year) );
+	async function deleteCBP(country,year) {
+		console.log("Deleting cbp..." + JSON.stringify(country)+ + JSON.stringify(year) );
 
-		const res = await fetch("/api/v1/ppas/" + country+"/"+year, {
+		const res = await fetch("/api/v1/cbp/" + country+"/"+year, {
 			method: "DELETE"
 		}).then(function (res) {
 			if (res.ok){
-				getPpa();
+				getCBP();
 				getCountryYears();
 				responseAlert("El dato se ha borrado correctamente")
 			} 
@@ -165,14 +164,14 @@
 		});
 	}
 
-	async function deletePPAcountries() {
-		console.log("Deleting all ppas data...");
-		const res = await fetch("/api/v1/ppas/", {
+	async function deleteCBPcountries() {
+		console.log("Deleting all cbp data...");
+		const res = await fetch("/api/v1/cbp/", {
 			method: "DELETE"
 		}).then(function (res) {
 			if (res.ok){
 			const json =  res.json();
-			ppas = json;
+			cbp = json;
 			responseAlert("Todos los datos se han borrado correctamente")
 		} else{
 			errorResponse(res);
@@ -183,7 +182,7 @@
 
 	async function search(country, year) {
 		console.log("Searching data: " + country + " and " + year);
-		var url = "/api/v1/ppas";
+		var url = "/api/v1/cbp";
 
 		if (country != "-" && year != "-") {
 			url = url + "?country=" + country + "&year=" + year; 
@@ -198,8 +197,8 @@
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
-			ppas = json;			
-			console.log("Found " + ppas.length + " ppas stats.");
+			cbp = json;			
+			console.log("Found " + cbp.length + " cbp stats.");
 		
 			if (country != "-" && year != "-") {
 				responseAlert("Busqueda de "+ country+ " en el año " + year +" realizada correctamente")  
@@ -218,7 +217,7 @@
 	function addOffset (increment) {
 		offset += increment;
 		currentPage += increment;
-		getPpa();
+		getCBP();
 	}
 
 
@@ -279,9 +278,9 @@ function errorResponse(res, msg) {
 <main>
 	<div role="alert" id="div_alert" style="display: none;">
 	</div>
-	{#await ppas}
-		Loading ppas...
-	{:then ppas}
+	{#await cbp}
+		Loading cbp...
+	{:then cbp}
 	<Button outline  color="primary" on:click="{ReloadTable}"> <i class="fas fa-search"></i> Recargar datos originales </Button>
 		<FormGroup> 
 			<Label for="selectCountry"> Búsqueda por país </Label>
@@ -310,33 +309,33 @@ function errorResponse(res, msg) {
 			<thead>
 				<tr>
 					<th>Pais</th>
-                    <th>Año</th>
-                    <th>Salario Bruto</th>
-                    <th>Salario neto</th>
-                    <th>Paridad de poder Adquisitivo</th>
-                    <th>Acciones</th>
+					<th>Año</th>
+					<th>Media Países por producción</th>
+					<th>Media per Capita</th>
+					<th>Media de produccion de coches</th>
+					<th>Acciones</th>
 
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><input  placeholder="Ej. Spain" bind:value="{newPPA.country}"></td>
-					<td><input type="number" placeholder="Ej. 2000" bind:value="{newPPA.year}" ></td>
-					<td><input type="number" placeholder="Ej. 1111111" bind:value="{newPPA.aas_gross}"></td>
-					<td><input type="number" placeholder="Ej. 1111111" bind:value="{newPPA.aas_net}"></td>
-					<td><input type="number" placeholder="Ej. 1111111" bind:value="{newPPA.ppa_per_capita}"></td>
-					<td> <Button outline  color="primary" on:click={insertPpa} > Insertar</Button> </td>
+					<td><input  placeholder="Ej. Spain" bind:value="{newCBP.country}"></td>
+					<td><input type="number" placeholder="Ej. 2000" bind:value="{newCBP.year}" ></td>
+					<td><input type="number" placeholder="Ej. 111111" bind:value="{newCBP.np}"></td>
+					<td><input type="number" placeholder="Ej. 11,11" bind:value="{newCBP.pwp}"></td>
+					<td><input type="number" placeholder="Ej. 111111" bind:value="{newCBP.aapc}"></td>
+					<td> <Button outline  color="primary" on:click={insertCbp} > Insertar</Button> </td>
 				</tr>
-				{#each ppas as ppa}
+				{#each cbp as cbp}
 					<tr>
 						<td>
-							<a href="#/ppas/{ppa.country}/{ppa.year}">{ppa.country}</a>
+							<a href="#/cbp/{cbp.country}/{cbp.year}">{cbp.country}</a>
 						</td>
-						<td>{ppa.year}</td>
-						<td>{ppa.aas_gross}</td>
-						<td>{ppa.aas_net}</td>
-						<td>{ppa.ppa_per_capita}</td>
-						<td><Button outline color="danger" on:click="{deletePPA(ppa.country,ppa.year)}">  <i class="fa fa-trash" aria-hidden="true"></i> Borrar</Button></td>
+						<td>{cbp.year}</td>
+						<td>{cbp.np}</td>
+						<td>{cbp.pwp}</td>
+						<td>{cbp.aapc}</td>
+						<td><Button outline color="danger" on:click="{deleteCBP(cbp.country,cbp.year)}">  <i class="fa fa-trash" aria-hidden="true"></i> Borrar</Button></td>
 					</tr>
 				{/each}
 			</tbody>
@@ -347,31 +346,32 @@ function errorResponse(res, msg) {
 
 
 		<PaginationItem class="{currentPage === 1 ? 'disabled' : ''}">
-		  <PaginationLink previous href="#/ppaAPI" on:click="{() => addOffset(-1)}" />
+		  <PaginationLink previous href="#/cbpAPI" on:click="{() => addOffset(-1)}" />
 		</PaginationItem>
 		
 		{#if currentPage != 1}
 		<PaginationItem>
-			<PaginationLink href="#/ppaAPI" on:click="{() => addOffset(-1)}" >{currentPage - 1}</PaginationLink>
+			<PaginationLink href="#/cbpAPI" on:click="{() => addOffset(-1)}" >{currentPage - 1}</PaginationLink>
 		</PaginationItem>
 		{/if}
 		<PaginationItem active>
-			<PaginationLink href="#/ppaAPI" >{currentPage}</PaginationLink>
+			<PaginationLink href="#/cbpAPI" >{currentPage}</PaginationLink>
 		</PaginationItem>
+
 		{#if moreData}
 		<PaginationItem >
-			<PaginationLink href="#/ppaAPI" on:click="{() => addOffset(1)}">{currentPage + 1}</PaginationLink>
+			<PaginationLink href="#/cbpAPI" on:click="{() => addOffset(1)}">{currentPage + 1}</PaginationLink>
 		</PaginationItem>
 		{/if}
 
 		<PaginationItem class="{moreData ? '' : 'disabled'}">
-		  <PaginationLink next href="#/ppaAPI" on:click="{() => addOffset(1)}"/>
+		  <PaginationLink next href="#/cbpAPI" on:click="{() => addOffset(1)}"/>
 		</PaginationItem>
 
 	</Pagination>
 
 	<Button outline  color="secondary" on:click="{pop}"> <i class="fas fa-arrow-circle-left"></i> Atrás </Button>
-	<Button outline  on:click={deletePPAcountries}   color="danger"> <i class="fa fa-trash" aria-hidden="true"></i> Borrar todo </Button>
+	<Button outline  on:click={deleteCBPcountries}   color="danger"> <i class="fa fa-trash" aria-hidden="true"></i> Borrar todo </Button>
 	
 
 

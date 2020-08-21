@@ -14,31 +14,31 @@
 
 
     export let params = {};
-    let gce = {};
+    let cbp = {};
     let updatedCountry = "XXXX";
     let updatedYear = 11111;
-    let updatedGce_country =11111;
-    let updatedGce_per_capita =11111;
-    let updatedGce_cars =11111;
+    let updatednp =11111;
+    let updatedpwp =11111;
+    let updatedaapc =11111;
     let errorMsg = "";
 
-    onMount(getGCE);
+    onMount(getCBP);
 
-    async function getGCE() {
+    async function getCBP() {
 
-        console.log("Fetching gce...");
-        const res = await fetch("/api/v1/gce/" + params.country +"/"+params.year);
+        console.log("Fetching cbp...");
+        const res = await fetch("/api/v1/cbp/" + params.country +"/"+params.year);
         
         if (res.ok) {
             console.log("Ok:");
             const json = await res.json();
-            gce = json;
-            updatedCountry = gce.country;
-            updatedYear = gce.year;
-            updatedGce_country = gce.gce_country;
-            updatedGce_per_capita=gce.gce_per_capita;
-            updatedGce_cars=gce.gce_cars;
-            console.log("Received gce.");
+            cbp = json;
+            updatedCountry = cbp.country;
+            updatedYear = cbp.year;
+            updatednp = cbp.np;
+            updatedpwp=cbp.pwp;
+            updatedaapc=cbp.aapc;
+            console.log("Received cbp.");
         } else {
             errorMsg = res.status + ": " + res.statusText;
             console.log("ERROR!" + errorMsg);
@@ -46,24 +46,24 @@
     }
 
 
-    async function updateGCE() {
+    async function updateCBP() {
 
-        console.log("Updating gce..." + JSON.stringify(params.country));
+        console.log("Updating cbp..." + JSON.stringify(params.country));
 
-        const res = await fetch("/api/v1/gce/" + params.country +"/"+params.year, {
+        const res = await fetch("/api/v1/cbp/" + params.country +"/"+params.year, {
             method: "PUT",
             body: JSON.stringify({
                 country: params.country,
                 year: params.year,
-                gce_country: updatedGce_country,
-                gce_per_capita: updatedGce_per_capita,
-                gce_cars: updatedGce_cars
+                np: updatednp,
+                pwp: updatedpwp,
+                aapc: updatedaapc
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then(function (res) {
-            getGCE();
+            getCBP();
             if (res.ok) {
                  responseAlert("Los datos de " +params.country+ " en el año " +params.year+ " han sido actualizados correctamente")
             } else if (res.status == 404) {
@@ -131,10 +131,10 @@ function errorResponse(res) {
 
     <div role="alert" id="div_alert" style="display: none;">
 	</div>
-    <h3>Editar GCE <strong>{gce.country} {gce.year}</strong></h3>
-    {#await gce}
-        Loading gce...
-    {:then gce}
+    <h3>Editar CBP <strong>{cbp.country} {cbp.year}</strong></h3>
+    {#await cbp}
+        Loading cbp...
+    {:then cbp}
         <Table bordered>
             <thead>
                 <tr>
@@ -150,10 +150,10 @@ function errorResponse(res) {
                 <tr>
                     <td>{updatedCountry}</td>
                     <td>{updatedYear}</td>
-                    <td><input type="number" bind:value="{updatedGce_country}"></td>
-                    <td><input type="number" bind:value="{updatedGce_per_capita}"></td>
-                    <td><input type="number" bind:value="{updatedGce_cars}"></td>
-                    <td> <Button outline  color="primary" on:click={updateGCE}> <i class="fas fa-pencil-alt"> <i class="fas fa-pencil-alt"> </i> Actualizar</Button> </td>
+                    <td><input type="number" bind:value="{updatednp}"></td>
+                    <td><input type="number" bind:value="{updatedpwp}"></td>
+                    <td><input type="number" bind:value="{updatedaapc}"></td>
+                    <td> <Button outline  color="primary" on:click={updateCBP}> <i class="fas fa-pencil-alt"> <i class="fas fa-pencil-alt"> </i> Actualizar</Button> </td>
                 </tr>
         </tbody>
         </Table>

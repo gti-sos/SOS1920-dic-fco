@@ -3,20 +3,17 @@
 
 	import Home from './Home.svelte';
 
-	import ppa from './ppaAPI/App.svelte';
-	import gce from './gceAPI/App.svelte';
 
-	import EditPPA from './ppaAPI/EditPpa.svelte';
-	import EditGCE from './gceAPI/EditGce.svelte';
+	import cbp from './cbpAPI/App.svelte';
+
+	import Editcbp from './cbpAPI/EditCbp.svelte';
 
 	import NotFound from './NotFound.svelte';
 	
 	const routes = {
 		"/": Home,
-		"/ppas/:country/:year": EditPPA,
-		"/gce/:country/:year":EditGCE,
-		"/gceAPI":gce,
-		"/ppaAPI":ppa, 
+		"/cbp/:country/:year":Editcbp,
+		"/cbpAPI":cbp, 
 		"*": NotFound
 	};
 </script>

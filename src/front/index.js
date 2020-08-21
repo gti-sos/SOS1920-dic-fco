@@ -4,4 +4,4 @@ const app = new App({
 	target: document.querySelector('#SvelteApp')
 });
 
-export default app;
+export default app;s
