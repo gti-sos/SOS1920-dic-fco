@@ -96,8 +96,8 @@ app.get(BASE_API_URL+"/cbp", (req,res) =>{
 	
 	db.find(par).skip(offset).limit(limit).exec((err, cbp)=> {
         deleteIDs(cbp);
-        res.send(JSON.stringify(cbp,null,2));
-         
+		res.send(JSON.stringify(cbp,null,2));
+		
          console.log("Data sent: "+JSON.stringify(cbp,null,2));
         });
     });
@@ -112,7 +112,7 @@ app.get(BASE_API_URL+"/cbp/:country", (req,res)=>{
 	});
 });
 	
-// GET yyyy/XXX/zzz
+// GET yyyy/XXX/zzzs
 app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 	
 	var country1 = req.params.country;
@@ -122,17 +122,24 @@ app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 		deleteIDs(cbp);
 		res.send(JSON.stringify(cbp[0],null,2));
 		console.log("Data sent:"+JSON.stringify(cbp[0],null,2));
+		//ruben pasa código
 	});
 });
 	
-// POST 
+// POST
 app.post(BASE_API_URL+"/cbp",(req,res) =>{
 	var newcbp = req.body;
-	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.np == null)||(newcbp.pwp == null)||(newcbp.aapc == null)){
-		res.sendStatus(400,"BAD REQUEST");
+	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.np == null)||(newcbp.pwp == null)||(newcbp.aapc == null)/*||(newcbp.aapc == "")*/){
+		res.sendStatus(400,"BAD REQUEST");		
 	} else {
-		db.insert(newcbp); 	
-		res.sendStatus(201,"CREATED");
+		db.find({country: newcbp.country, year: Number(newcbp.year)}, (err,cbp)=>{
+			if(cbp.length ==0){
+				db.insert(newcbp); 	
+				res.sendStatus(201,"CREATED");
+			}else{
+				res.sendStatus(400,"BAD REQUEST");
+			}
+		});
 	}
 });
 	

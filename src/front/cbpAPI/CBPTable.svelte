@@ -43,16 +43,8 @@
 
 	async function ReloadTable() {
 		const res = await fetch("/api/v1/cbp/loadInitialData")
-
-		if (res.ok) {
-			const initialCBP = await res.json();
-			console.log("Contados "+ initialCBP.length +" datos de cbp")
-			getCBP();
-			responseAlert("Se ha reiniciado la tabla correctamente con los valores iniciales")
-		}else{
-			console.log("No se han cargado correctamente los datos iniciales")
-			errorResponse(res)
-		}
+		responseAlert("Se ha reiniciado la tabla correctamente con los valores iniciales")
+		location.reload();
 	}
 
 
@@ -126,8 +118,11 @@
 			|| newCBP.year == null) {
 			
 			alert("Se debe incluir el nombre del país y el año obligatoriamente");
+			
+			//}else if(search(newCBP.country,newCBP.year)){
+			//	alert("No se puede insertar un pais más de una vez el mismo año");
 
-		} else {
+			} else {
 				const res = await fetch("/api/v1/cbp", {
 					method: "POST",
 					body: JSON.stringify(newCBP),
@@ -138,6 +133,7 @@
 					if (res.ok){
 						getCBP();
 						responseAlert("Datos de " +newCBP.country + " añadidos correctamente")
+						location.reload();
 					} else{
 						errorResponse(res)
 					}
@@ -281,6 +277,7 @@ function errorResponse(res, msg) {
 	{#await cbp}
 		Loading cbp...
 	{:then cbp}
+	
 	<Button outline  color="primary" on:click="{ReloadTable}"> <i class="fas fa-search"></i> Recargar datos originales </Button>
 		<FormGroup> 
 			<Label for="selectCountry"> Búsqueda por país </Label>

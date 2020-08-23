@@ -54,7 +54,7 @@
             method: "PUT",
             body: JSON.stringify({
                 country: params.country,
-                year: params.year,
+                year: Number(params.year),
                 np: updatednp,
                 pwp: updatedpwp,
                 aapc: updatedaapc
