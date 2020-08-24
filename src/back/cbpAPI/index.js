@@ -91,7 +91,8 @@ app.get(BASE_API_URL+"/cbp", (req,res) =>{
     if (req.query.limit) {
         limit = parseInt(req.query.limit);
         delete req.query.limit;
-    }  
+	}
+	
 	
 	
 	db.find(par).skip(offset).limit(limit).exec((err, cbp)=> {
@@ -122,10 +123,9 @@ app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 		deleteIDs(cbp);
 		res.send(JSON.stringify(cbp[0],null,2));
 		console.log("Data sent:"+JSON.stringify(cbp[0],null,2));
-		//ruben pasa código
 	});
 });
-	
+
 // POST
 app.post(BASE_API_URL+"/cbp",(req,res) =>{
 	var newcbp = req.body;

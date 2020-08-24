@@ -31,7 +31,7 @@
 	let currentCountry = "-";
 	let currentYear = "-";
 
-	let numberElementsPages = 10;
+	let numberElementsPages = 2;
 	let offset = 0;
 	let currentPage = 1; 
 	let moreData = true; 
@@ -85,7 +85,7 @@
 			cbp = json;
 			console.log("Received " + cbp.length + " cbp.");
 
-			if (cbp.length!=10){
+			if (cbp.length!=numberElementsPages){
 				moreData=false
 			} else{
 
@@ -99,7 +99,7 @@
 							moreData = false;
 						} 
 						else {
-							moreData = true;  
+							moreData = true; 
 						}
 					}
 		} 
@@ -118,9 +118,6 @@
 			|| newCBP.year == null) {
 			
 			alert("Se debe incluir el nombre del país y el año obligatoriamente");
-			
-			//}else if(search(newCBP.country,newCBP.year)){
-			//	alert("No se puede insertar un pais más de una vez el mismo año");
 
 			} else {
 				const res = await fetch("/api/v1/cbp", {
