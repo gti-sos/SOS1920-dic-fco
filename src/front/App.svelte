@@ -10,10 +10,12 @@
 	import NotFound from './NotFound.svelte';
 
 	import CBPChart from './cbpAPI/CBPChart.svelte';
+	//import CBPPieChart from './cbpAPI/CBPPieChart.svelte';
 	
 	const routes = {
 		"/": Home,
 		"/CBPChart":CBPChart,
+		//"/CBPPieChart":CBPPieChart,
 		"/cbp/:country/:year":Editcbp,
 		"/cbpAPI":cbp, 
 		"*": NotFound
