@@ -9,41 +9,44 @@ module.exports = function(app){
 	});
 	
 	const BASE_API_URL = "/api/v1";
+
+	//const request = require('request');
+	//const express = require("express");
 	
 	var initialcbp = [
 	
 	{
 		country:"India",
 		year:2020,
-		np:1375351000,
+		yfed:43,
 		pwp:18.13,
 		aapc:1.64   
 	},
 	{
 		country:"China",
 		year:2020,
-		np:1409451000,
+		yfed:144,
 		pwp:18.05,
 		aapc:0.48   
 	},
 	{
 		country:"U.S",
 		year:2020,
-		np:330135000,
+		yfed:99,
 		pwp:4.27,
 		aapc:0.71  
 	},
 	{
 		country:"Spain",
 		year:2020,
-		np:47329981,
+		yfed:147,
 		pwp:0.61,
 		aapc:0.47   
 	},
 	{
 		country:"Germany",
 		year:2020,
-		np:83157201,
+		yfed:169,
 		pwp:1.07,
 		aapc:0.41   
 	},
@@ -74,7 +77,7 @@ app.get(BASE_API_URL+"/cbp", (req,res) =>{
 	
 	//if(req.query.country) request["country"] = req.query.country;
     if(req.query.year) req.query.year = parseInt(req.query.year);
-    if(req.query.np) req.query.np = parseInt(req.query.np);
+    if(req.query.yfed) req.query.yfed = parseInt(req.query.yfed);
     if(req.query.pwp) req.query.pwp = parseFloat(req.query.pwp);
     if(req.query.aapc) req.query.aapc = parseFloat(req.query.aapc);
 	
@@ -129,7 +132,7 @@ app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 // POST
 app.post(BASE_API_URL+"/cbp",(req,res) =>{
 	var newcbp = req.body;
-	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.np == null)||(newcbp.pwp == null)||(newcbp.aapc == null)/*||(newcbp.aapc == "")*/){
+	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.yfed == null)||(newcbp.pwp == null)||(newcbp.aapc == null)/*||(newcbp.aapc == "")*/){
 		res.sendStatus(400,"BAD REQUEST");		
 	} else {
 		db.find({country: newcbp.country, year: Number(newcbp.year)}, (err,cbp)=>{

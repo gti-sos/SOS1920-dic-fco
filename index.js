@@ -4,10 +4,13 @@ const path = require ("path");
 
 const cbpAPI =require(path.join(__dirname,"./src/back/cbpAPI"));
 
+const cors = require("cors");
+
 var app = express();
 
-app.use(bodyParser.json());
+app.use(cors());
 
+app.use(bodyParser.json());
 
 cbpAPI(app);
 

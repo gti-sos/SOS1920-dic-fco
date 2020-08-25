@@ -21,7 +21,7 @@
 	let newCBP = {
 		country: "",
 		year: ("") ,
-		np: "",
+		yfed: "",
 		pwp:"",
 		aapc:""
 	};
@@ -315,7 +315,7 @@ function errorResponse(res, msg) {
 				<tr>
 					<td><input  placeholder="Ej. Spain" bind:value="{newCBP.country}"></td>
 					<td><input type="number" placeholder="Ej. 2000" bind:value="{newCBP.year}" ></td>
-					<td><input type="number" placeholder="Ej. 111111" bind:value="{newCBP.np}"></td>
+					<td><input type="number" placeholder="Ej. 111111" bind:value="{newCBP.yfed}"></td>
 					<td><input type="number" placeholder="Ej. 11,11" bind:value="{newCBP.pwp}"></td>
 					<td><input type="number" placeholder="Ej. 111111" bind:value="{newCBP.aapc}"></td>
 					<td> <Button outline  color="primary" on:click={insertCbp} > Insertar</Button> </td>
@@ -326,7 +326,7 @@ function errorResponse(res, msg) {
 							<a href="#/cbp/{cbp.country}/{cbp.year}">{cbp.country}</a>
 						</td>
 						<td>{cbp.year}</td>
-						<td>{cbp.np}</td>
+						<td>{cbp.yfed}</td>
 						<td>{cbp.pwp}</td>
 						<td>{cbp.aapc}</td>
 						<td><Button outline color="danger" on:click="{deleteCBP(cbp.country,cbp.year)}">  <i class="fa fa-trash" aria-hidden="true"></i> Borrar</Button></td>

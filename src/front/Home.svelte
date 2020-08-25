@@ -2,6 +2,7 @@
 
 	<div class="div-home" style="text-align:center">
 		<button type="button"   class="btn btn-outline-success"  onclick="window.location.href='#/cbpAPI'"> API de cbp</button>
+		<button type="button"   class="btn btn-secondary"  onclick="window.location.href='#/CBPChart'">Gráfico API</button>
 	</div>
 </main>
 <style>

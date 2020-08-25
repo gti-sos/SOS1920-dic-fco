@@ -17,7 +17,7 @@
     let cbp = {};
     let updatedCountry = "XXXX";
     let updatedYear = 11111;
-    let updatednp =11111;
+    let updatedyfed =11111;
     let updatedpwp =11111;
     let updatedaapc =11111;
     let errorMsg = "";
@@ -35,7 +35,7 @@
             cbp = json;
             updatedCountry = cbp.country;
             updatedYear = cbp.year;
-            updatednp = cbp.np;
+            updatedyfed = cbp.yfed;
             updatedpwp=cbp.pwp;
             updatedaapc=cbp.aapc;
             console.log("Received cbp.");
@@ -55,7 +55,7 @@
             body: JSON.stringify({
                 country: params.country,
                 year: Number(params.year),
-                np: updatednp,
+                yfed: updatedyfed,
                 pwp: updatedpwp,
                 aapc: updatedaapc
             }),
@@ -150,7 +150,7 @@ function errorResponse(res) {
                 <tr>
                     <td>{updatedCountry}</td>
                     <td>{updatedYear}</td>
-                    <td><input type="number" bind:value="{updatednp}"></td>
+                    <td><input type="number" bind:value="{updatedyfed}"></td>
                     <td><input type="number" bind:value="{updatedpwp}"></td>
                     <td><input type="number" bind:value="{updatedaapc}"></td>
                     <td> <Button outline  color="primary" on:click={updateCBP}> <i class="fas fa-pencil-alt"> <i class="fas fa-pencil-alt"> </i> Actualizar</Button> </td>
