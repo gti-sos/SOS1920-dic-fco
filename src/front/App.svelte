@@ -9,7 +9,7 @@
 
 	import NotFound from './NotFound.svelte';
 
-	import CBPChart from './cbpApi/CBPChart.svelte';
+	import CBPChart from './cbpAPI/CBPChart.svelte';
 	
 	const routes = {
 		"/": Home,
