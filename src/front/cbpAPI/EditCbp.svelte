@@ -140,9 +140,9 @@ function errorResponse(res) {
                 <tr>
                     <th>Pais</th>
 					<th>Año</th>
-					<th>Media Países por producción</th>
-					<th>Media per Capita</th>
-					<th>Media de produccion de coches</th>
+					<th>Años para duplicar población</th>
+					<th>Porcentaje del total mundial(%)</th>
+					<th>Cambio medio anual de la población(%)</th>
 					<th>Acciones</th>
                 </tr>
             </thead>
