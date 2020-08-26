@@ -112,14 +112,7 @@
 
 		console.log("Inserting cbp..." + JSON.stringify(newCBP));
 
-		if (newCBP.country == ""
-			|| newCBP.country == null
-			|| newCBP.year == "" 
-			|| newCBP.year == null) {
-			
-			alert("Se debe incluir el nombre del país y el año obligatoriamente");
-
-			} else {
+		
 				const res = await fetch("/api/v1/cbp", {
 					method: "POST",
 					body: JSON.stringify(newCBP),
@@ -137,7 +130,6 @@
 					
 				});
 			}
-	}
 
 
 	async function deleteCBP(country,year) {
@@ -226,6 +218,17 @@
 			clearAlert();
 		}, 3000);
 	}
+	function responseError(msg) {
+		clearAlert();
+		var alert_element = document.getElementById("div_alert");
+		alert_element.style = "position: fixed;color:black; background-color:#F08080;border-color:red; top: 0px; top: 1%; width: 90%;";
+		alert_element.className = "alert alert-dismissible in alert-success";
+		alert_element.innerHTML = "<strong>¡Error!</strong> " + msg;
+		
+		setTimeout(() => {
+			clearAlert();
+		}, 3000);
+	}
 
 	function clearAlert () {
 		var alert_element = document.getElementById("div_alert");
@@ -238,19 +241,25 @@ function errorResponse(res, msg) {
 	var status = res.status
 	switch (status) {
 		case 400:
-			alert("Codigo de error: " + status + '\n'+ "Los datos introduccidos no son validos");
+			responseError("Codigo de error: " + status + '\n'+ "Los datos introduccidos no son validos");
 			break;
 		case 401:
-			alert("Codigo de error: " + status + '\n'+ "No tiene permisos para realizar esta accion");
+			responseError("Codigo de error: " + status + '\n'+ "No tiene permisos para realizar esta accion");
 			break;
 		case 404:
-			alert("Codigo de error: " + status + '\n'+ "Página no encontrada");
+			responseError("Codigo de error: " + status + '\n'+ "Página no encontrada");
 			break;
 		case 405:
-			alert("Codigo de error: " + status + '\n'+ "Metodo no permitido");
+			responseError("Codigo de error: " + status + '\n'+ "Metodo no permitido");
 			break;
 		case 409:
-			alert("Codigo de error: " + status + '\n'+ "Conclifto con la operacion");
+			responseError("Codigo de error: " + status + '\n'+ "Conclifto con la operacion");
+			break;
+		case 408:
+			responseError("Codigo de error: " + status + '\n'+ "Los datos tienen que estar entre 0 y 100");
+			break;
+		case 410:
+			responseError("Codigo de error: " + status + '\n'+ "Los datos de ese pais en ese año ya están registrados");
 			break;
 
 		default:

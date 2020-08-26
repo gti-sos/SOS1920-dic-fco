@@ -132,15 +132,17 @@ app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 // POST
 app.post(BASE_API_URL+"/cbp",(req,res) =>{
 	var newcbp = req.body;
-	if((newcbp == "") || (newcbp.country == null)||(newcbp.year == null)||(newcbp.yfed == null)||(newcbp.pwp == null)||(newcbp.aapc == null)/*||(newcbp.aapc == "")*/){
-		res.sendStatus(400,"BAD REQUEST");		
+	if((newcbp == "") || (newcbp.country == null)|| (newcbp.country == "")||(newcbp.year == null)||(newcbp.year == "")||(newcbp.yfed == null)){
+		res.sendStatus(400,"BAD REQUEST");	
+	}else if(((newcbp.pwp!=""||newcbp.pwp!=null)&&(newcbp.pwp>100||newcbp.pwp<0))||((newcbp.aapc!=""||newcbp.aapc!=null)&&(newcbp.aapc>100||newcbp.aapc<0))){
+		res.sendStatus(408,"BAD REQUEST");	
 	} else {
 		db.find({country: newcbp.country, year: Number(newcbp.year)}, (err,cbp)=>{
 			if(cbp.length ==0){
 				db.insert(newcbp); 	
 				res.sendStatus(201,"CREATED");
 			}else{
-				res.sendStatus(400,"BAD REQUEST");
+				res.sendStatus(410,"BAD REQUEST");
 			}
 		});
 	}
@@ -207,9 +209,13 @@ app.put(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 	db.find({country: country1, year: Number(year1)}, (err, cbp) => {
 		deleteIDs(cbp);
 		if(cbp.length >= 1){
+			if(((body.pwp!=""||body.pwp!=null)&&(body.pwp>100||body.pwp<0))||((body.aapc!=""||body.aapc!=null)&&(body.aapc>100||body.aapc<0))){
+				res.sendStatus(408,"BAD REQUEST");
+			}else{
 			db.update({country: country1,year:Number(year1)}, body, (error, numRemoved) => {
 				res.sendStatus(200, "OK");
 			})
+		}
 		}else{
 			res.sendStatus(404,"ERROR. Pais no encontrado.");
 		}
