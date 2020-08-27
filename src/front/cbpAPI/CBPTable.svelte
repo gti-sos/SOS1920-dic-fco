@@ -4,8 +4,8 @@
 	} from "svelte";
 
 	import {
-        pop
-    } from "svelte-spa-router";
+		pop
+	} from "svelte-spa-router";
 
 	import Table from "sveltestrap/src/Table.svelte";
 	import Button from "sveltestrap/src/Button.svelte";
@@ -20,10 +20,10 @@
 	let cbp = [];
 	let newCBP = {
 		country: "",
-		year: ("") ,
+		year: (""),
 		yfed: "",
-		pwp:"",
-		aapc:""
+		pwp: "",
+		aapc: ""
 	};
 
 	let countries = [];
@@ -33,8 +33,8 @@
 
 	let numberElementsPages = 2;
 	let offset = 0;
-	let currentPage = 1; 
-	let moreData = true; 
+	let currentPage = 1;
+	let moreData = true;
 
 	onMount(getCBP);
 	onMount(getCountryYears);
@@ -49,21 +49,21 @@
 
 
 	async function getCountryYears() {
-		const res = await fetch("/api/v1/cbp"); 
+		const res = await fetch("/api/v1/cbp");
 
 		if (res.ok) {
 			const json = await res.json();
 
 			countries = json.map((d) => {
-					return d.country;            
+				return d.country;
 			});
-			countries = Array.from(new Set(countries));   
-			
-			
-			years = json.map((d) => {   
-					return d.year;    
+			countries = Array.from(new Set(countries));
+
+
+			years = json.map((d) => {
+				return d.year;
 			});
-			years = Array.from(new Set(years));      
+			years = Array.from(new Set(years));
 
 			console.log("Contados " + countries.length + "paises y " + years.length + "años distintos.");
 
@@ -72,12 +72,12 @@
 		}
 	}
 
-	
 
-	async function getCBP(){
+
+	async function getCBP() {
 
 		console.log("Fetching cbp...");
-		const res = await fetch("/api/v1/cbp?offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages); 
+		const res = await fetch("/api/v1/cbp?offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages);
 
 		if (res.ok) {
 			console.log("Ok:");
@@ -85,24 +85,24 @@
 			cbp = json;
 			console.log("Received " + cbp.length + " cbp.");
 
-			if (cbp.length!=numberElementsPages){
-				moreData=false
-			} else{
+			if (cbp.length != numberElementsPages) {
+				moreData = false
+			} else {
 
-						const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset+1) + "&limit=" + numberElementsPages); 
-						console.log("La variable NEXT tiene el estado: " + next.status)
-						const jsonNext = await next.json();
-						
-						
-						
-						if (jsonNext.length == 0 || next.status==404) {  
-							moreData = false;
-						} 
-						else {
-							moreData = true; 
-						}
-					}
-		} 
+				const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
+				console.log("La variable NEXT tiene el estado: " + next.status)
+				const jsonNext = await next.json();
+
+
+
+				if (jsonNext.length == 0 || next.status == 404) {
+					moreData = false;
+				}
+				else {
+					moreData = true;
+				}
+			}
+		}
 		else {
 			errorResponse(res)
 		}
@@ -112,37 +112,37 @@
 
 		console.log("Inserting cbp..." + JSON.stringify(newCBP));
 
-		
-				const res = await fetch("/api/v1/cbp", {
-					method: "POST",
-					body: JSON.stringify(newCBP),
-					headers: {
-						"Content-Type": "application/json"
-					}
-				}).then(function (res) {
-					if (res.ok){
-						getCBP();
-						responseAlert("Datos de " +newCBP.country + " añadidos correctamente")
-						location.reload();
-					} else{
-						errorResponse(res)
-					}
-					
-				});
+
+		const res = await fetch("/api/v1/cbp", {
+			method: "POST",
+			body: JSON.stringify(newCBP),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then(function (res) {
+			if (res.ok) {
+				getCBP();
+				responseAlert("Datos de " + newCBP.country + " añadidos correctamente")
+				location.reload();
+			} else {
+				errorResponse(res)
 			}
 
+		});
+	}
 
-	async function deleteCBP(country,year) {
-		console.log("Deleting cbp..." + JSON.stringify(country)+ + JSON.stringify(year) );
 
-		const res = await fetch("/api/v1/cbp/" + country+"/"+year, {
+	async function deleteCBP(country, year) {
+		console.log("Deleting cbp..." + JSON.stringify(country) + + JSON.stringify(year));
+
+		const res = await fetch("/api/v1/cbp/" + country + "/" + year, {
 			method: "DELETE"
 		}).then(function (res) {
-			if (res.ok){
+			if (res.ok) {
 				getCBP();
 				getCountryYears();
 				responseAlert("El dato se ha borrado correctamente")
-			} 
+			}
 			else {
 				errorResponse(res);
 			}
@@ -154,52 +154,121 @@
 		const res = await fetch("/api/v1/cbp/", {
 			method: "DELETE"
 		}).then(function (res) {
-			if (res.ok){
-			const json =  res.json();
-			cbp = json;
-			responseAlert("Todos los datos se han borrado correctamente")
-		} else{
-			errorResponse(res);
-		}
+			if (res.ok) {
+				const json = res.json();
+				cbp = json;
+				responseAlert("Todos los datos se han borrado correctamente")
+			} else {
+				errorResponse(res);
+			}
 		});
 	}
 
 
 	async function search(country, year) {
+		let offset = 0;
 		console.log("Searching data: " + country + " and " + year);
 		var url = "/api/v1/cbp";
 
 		if (country != "-" && year != "-") {
-			url = url + "?country=" + country + "&year=" + year; 
+			url = url + "?country=" + country + "&year=" + year+"&";
 		} else if (country != "-" && year == "-") {
-			url = url + "?country=" + country;
+			url = url + "?country=" + country+"&";
 		} else if (country == "-" && year != "-") {
-			url = url + "?year=" + year;
+			url = url + "?year=" + year+"&";
+		}else if (country == "-" && year == "-") {
+			url = url+"?";
 		}
-
-		const res = await fetch(url);
+		const res = await fetch(url+"offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages);
 
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
-			cbp = json;			
-			console.log("Found " + cbp.length + " cbp stats.");
-		
-			if (country != "-" && year != "-") {
-				responseAlert("Busqueda de "+ country+ " en el año " + year +" realizada correctamente")  
-		} else if (country != "-" && year == "-") {
-				responseAlert("Busqueda de "+ country  +" realizada correctamente" )  
-		} else if (country == "-" && year != "-") {
-				responseAlert("Busqueda en el año "+ year+ " realizada correctamente")  
+			cbp = json;
+			console.log("Received " + cbp.length + " cbp.");
+
+			if (cbp.length != numberElementsPages) {
+				moreData = false
+			} else {
+
+				const next = await fetch(url+"offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
+				console.log("La variable NEXT tiene el estado: " + next.status)
+				const jsonNext = await next.json();
+
+
+
+				if (jsonNext.length == 0 || next.status == 404) {
+					moreData = false;
+				}
+				else {
+					moreData = true;
+				}
+			}
 		}
-		} else {
+		else {
 			errorResponse(res)
-			console.log("ERROR!");
 		}
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/*console.log("Searching data: " + country + " and " + year);
+		var url = "/api/v1/cbp";
+
+		if (country != "-" && year != "-") {
+			url = url + "?country=" + country + "&year=" + year;
+		} else if (country != "-" && year == "-") {
+			url = url + "?country=" + country;
+		} else if (country == "-" && year != "-") {
+			url = url + "?year=" + year;
+		}else if (country == "-" && year == "-") {
+			url = url;
+		}
+
+		const res = await fetch(url).then(function (res) {
+
+			if (res.ok) {
+				console.log("Ok:");
+				const json = res.json();
+				cbp = json;
+				console.log("Found " + cbp.length + " cbp stats.");
+				
+				if (country != "-" && year != "-") {
+					responseAlert("Busqueda de " + country + " en el año " + year + " realizada correctamente")
+				} else if (country != "-" && year == "-") {
+					responseAlert("Busqueda de " + country + " realizada correctamente")
+				} else if (country == "-" && year == "-") {
+					responseAlert("Busqueda de todos los paises realizada correctamente")
+				} else if (country == "-" && year != "-") {
+					responseAlert("Busqueda en el año " + year + " realizada correctamente")
+				}
+			} else {
+				errorResponse(res)
+				console.log("ERROR!");
+			}
+
+		});*/
 	}
 
-	function addOffset (increment) {
+
+	function addOffset(increment) {
 		offset += increment;
 		currentPage += increment;
 		getCBP();
@@ -213,7 +282,7 @@
 		alert_element.style = "position: fixed; top: 0px; top: 1%; width: 90%;";
 		alert_element.className = "alert alert-dismissible in alert-success";
 		alert_element.innerHTML = "<strong>¡Exito!</strong> " + msg;
-		
+
 		setTimeout(() => {
 			clearAlert();
 		}, 3000);
@@ -224,55 +293,55 @@
 		alert_element.style = "position: fixed;color:black; background-color:#F08080;border-color:red; top: 0px; top: 1%; width: 90%;";
 		alert_element.className = "alert alert-dismissible in alert-success";
 		alert_element.innerHTML = "<strong>¡Error!</strong> " + msg;
-		
+
 		setTimeout(() => {
 			clearAlert();
 		}, 3000);
 	}
 
-	function clearAlert () {
+	function clearAlert() {
 		var alert_element = document.getElementById("div_alert");
 		alert_element.style = "display: none; ";
 		alert_element.className = "alert alert-dismissible in";
 		alert_element.innerHTML = "";
 	}
 
-function errorResponse(res, msg) {
-	var status = res.status
-	switch (status) {
-		case 400:
-			responseError("Codigo de error: " + status + '\n'+ "Los datos introduccidos no son validos");
-			break;
-		case 401:
-			responseError("Codigo de error: " + status + '\n'+ "No tiene permisos para realizar esta accion");
-			break;
-		case 404:
-			responseError("Codigo de error: " + status + '\n'+ "Página no encontrada");
-			break;
-		case 405:
-			responseError("Codigo de error: " + status + '\n'+ "Metodo no permitido");
-			break;
-		case 409:
-			responseError("Codigo de error: " + status + '\n'+ "Conclifto con la operacion");
-			break;
-		case 408:
-			responseError("Codigo de error: " + status + '\n'+ "Los datos tienen que estar entre 0 y 100");
-			break;
-		case 410:
-			responseError("Codigo de error: " + status + '\n'+ "Los datos de ese pais en ese año ya están registrados");
-			break;
-
-		default:
-			if (status!=400 && status!=401 && status!=404 && status!=405  && status!=409  && status!=200  && status!=2001) {
-				alert("Codigo de error: "+ status +'\n'+ "Error de desconocido por el sistema")
+	function errorResponse(res, msg) {
+		var status = res.status
+		switch (status) {
+			case 400:
+				responseError("Codigo de error: " + status + '\n' + "Los datos introduccidos no son validos");
+				break;
+			case 401:
+				responseError("Codigo de error: " + status + '\n' + "No tiene permisos para realizar esta accion");
+				break;
+			case 404:
+				responseError("Codigo de error: " + status + '\n' + "Página no encontrada");
+				break;
+			case 405:
+				responseError("Codigo de error: " + status + '\n' + "Metodo no permitido");
+				break;
+			case 409:
+				responseError("Codigo de error: " + status + '\n' + "Conclifto con la operacion");
+				break;
+			case 408:
+				responseError("Codigo de error: " + status + '\n' + "Los datos tienen que estar entre 0 y 100");
+				break;
+			case 410:
+				responseError("Codigo de error: " + status + '\n' + "Los datos de ese pais en ese año ya están registrados");
 				break;
 
-			}else{
-				break;
-			}
-			
+			default:
+				if (status != 400 && status != 401 && status != 404 && status != 405 && status != 409 && status != 200 && status != 2001) {
+					alert("Codigo de error: " + status + '\n' + "Error de desconocido por el sistema")
+					break;
+
+				} else {
+					break;
+				}
+
+		}
 	}
-}
 
 
 </script>
@@ -343,7 +412,8 @@ function errorResponse(res, msg) {
 				{/each}
 			</tbody>
 		</Table>
-	{/await}
+		{/await}
+	
  
 	<Pagination style="float:right;" ariaLabel="Cambiar de página">
 
@@ -372,6 +442,7 @@ function errorResponse(res, msg) {
 		</PaginationItem>
 
 	</Pagination>
+	
 
 	<Button outline  color="secondary" on:click="{pop}"> <i class="fas fa-arrow-circle-left"></i> Atrás </Button>
 	<Button outline  on:click={deleteCBPcountries}   color="danger"> <i class="fa fa-trash" aria-hidden="true"></i> Borrar todo </Button>
