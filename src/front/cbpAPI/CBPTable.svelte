@@ -162,6 +162,7 @@
 				errorResponse(res);
 			}
 		});
+		location.reload()
 	}
 
 
@@ -187,10 +188,20 @@
 			cbp = json;
 			console.log("Received " + cbp.length + " cbp.");
 
-			if (cbp.length != numberElementsPages) {
+			if (country != "-" && year != "-"&&cbp.length>0) {
+					responseAlert("Busqueda de " + country + " en el año " + year + " realizada correctamente")
+				}else if (country != "-" && year != "-"&&cbp.length==0) {
+					responseError("Dato no extiste")
+				}else if (country != "-" && year == "-") {
+					responseAlert("Busqueda de " + country + " realizada correctamente")
+				} else if (country == "-" && year == "-") {
+					responseAlert("Busqueda de todos los paises realizada correctamente")
+				} else if (country == "-" && year != "-") {
+					responseAlert("Busqueda en el año " + year + " realizada correctamente")
+				}
+			else if (cbp.length != numberElementsPages) {
 				moreData = false
 			} else {
-
 				const next = await fetch(url+"offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
 				console.log("La variable NEXT tiene el estado: " + next.status)
 				const jsonNext = await next.json();
@@ -208,63 +219,6 @@
 		else {
 			errorResponse(res)
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		/*console.log("Searching data: " + country + " and " + year);
-		var url = "/api/v1/cbp";
-
-		if (country != "-" && year != "-") {
-			url = url + "?country=" + country + "&year=" + year;
-		} else if (country != "-" && year == "-") {
-			url = url + "?country=" + country;
-		} else if (country == "-" && year != "-") {
-			url = url + "?year=" + year;
-		}else if (country == "-" && year == "-") {
-			url = url;
-		}
-
-		const res = await fetch(url).then(function (res) {
-
-			if (res.ok) {
-				console.log("Ok:");
-				const json = res.json();
-				cbp = json;
-				console.log("Found " + cbp.length + " cbp stats.");
-				
-				if (country != "-" && year != "-") {
-					responseAlert("Busqueda de " + country + " en el año " + year + " realizada correctamente")
-				} else if (country != "-" && year == "-") {
-					responseAlert("Busqueda de " + country + " realizada correctamente")
-				} else if (country == "-" && year == "-") {
-					responseAlert("Busqueda de todos los paises realizada correctamente")
-				} else if (country == "-" && year != "-") {
-					responseAlert("Busqueda en el año " + year + " realizada correctamente")
-				}
-			} else {
-				errorResponse(res)
-				console.log("ERROR!");
-			}
-
-		});*/
 	}
 
 

@@ -40,11 +40,27 @@
 </head>
 
 <main>
+    <div class="texto">
     <h2>Gráfica 2 Billboard</h2>
 
     <p>
         El gráfico mutiline label muestra los años que tardaría en duplicarse la población de cada pais.
     </p>
+    </div>
     <Button color="info" on:click="{pop}">Atrás</Button>
     <div id="multilineLabel"></div>
 </main>
+
+<style>
+    	.texto{
+        background-color: #DA7E3F;
+        height:75px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+    h2, p{
+        margin-left:10px;
+    }
+    
+   
+</style>

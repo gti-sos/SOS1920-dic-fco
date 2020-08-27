@@ -127,6 +127,7 @@ app.get(BASE_API_URL+"/cbp/:country/:year", (req,res)=>{
 		res.send(JSON.stringify(cbp[0],null,2));
 		console.log("Data sent:"+JSON.stringify(cbp[0],null,2));
 	});
+	res.sendStatus(410,"BAD REQUEST");
 });
 
 // POST

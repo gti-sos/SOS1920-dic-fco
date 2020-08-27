@@ -1,5 +1,4 @@
 <main>
-
 	<div class="div-home" style="text-align:center">
 		<button type="button"   class="btn"  onclick="window.location.href='#/cbpAPI'">Paises por población</button>
 	</div>
@@ -29,5 +28,10 @@
 		border-color: #040661;
 		background-color: #001C3C;
 	}
+	main{
+		background-color: #DA7E3F;
+		border-radius: 10px;
+	}
 	</style>
+
 	

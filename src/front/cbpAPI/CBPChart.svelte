@@ -103,6 +103,12 @@
 </main>
 
 <style>
+    h2{
+        margin-bottom:10px;
+        background-color: #DA7E3F;
+        border-radius: 6px;
+        height:45px;
+    }
     .highcharts-figure,
     .highcharts-data-table table {
         min-width: 310px;
