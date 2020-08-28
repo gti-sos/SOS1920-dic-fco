@@ -11,6 +11,9 @@
 
 	import CBPChart from './cbpAPI/CBPChart.svelte';
 	import CBPPieChart from './cbpAPI/CBPPieChart.svelte';
+
+	//Integraciones
+	import IntegracionClase1 from './cbpAPI/IntegracionClase1.svelte';
 	
 	const routes = {
 		"/": Home,
@@ -18,6 +21,7 @@
 		"/CBPPieChart":CBPPieChart,
 		"/cbp/:country/:year":Editcbp,
 		"/cbpAPI":cbp, 
+		"/IntegracionClase1":IntegracionClase1,
 		"*": NotFound
 	};
 </script>

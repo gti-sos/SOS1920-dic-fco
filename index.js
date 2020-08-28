@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 cbpAPI(app);
 
-var port = process.env.PORT || 9999;
+var port = process.env.PORT || 2222;
 
 app.use("/", express.static("./public"));
 

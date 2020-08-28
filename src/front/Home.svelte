@@ -5,8 +5,11 @@
 	<div class="div-home" style="text-align:center">
 		<button type="button"   class="btn"  onclick="window.location.href='#/CBPChart'">Gráfico 1 API</button>
 	</div>
-	<div class="div-home" style="text-align:center">
+	<div class="div-home" style="text-align:center;" >
 		<button type="button"   class="btn"  onclick="window.location.href='#/CBPPieChart'">Gráfico 2 API</button>
+	</div>
+	<div class="div-home" style="text-align:center;" >
+		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionClase1'">Integración API 1</button>
 	</div>
 </main>
 <style>
@@ -21,6 +24,7 @@
 		padding: 10px;
 		font-weight: 700;
 		font-size: 40px;
+		margin-bottom:5px;
 	}
 	.btn:hover {
 

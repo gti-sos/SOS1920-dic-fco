@@ -1,9 +1,7 @@
 <script>
     import Button from "sveltestrap/src/Button.svelte";
-    import {
-        pop
-    } from "svelte-spa-router";
-    import { onMount } from 'svelte';
+    import { pop } from "svelte-spa-router";
+
 
     async function loadGraph() {
 
@@ -12,13 +10,37 @@
 
         const resData = await fetch(BASE_API_URL);
         let MyData = await resData.json();
+        let countries = Array.from(MyData.map((d) => { return d.country; }));
 
-        let countries = Array.from(MyData.map((d) => { return d.country + " " + d.year; }));
-        let pwp = Array.from(MyData.map((d) => { return parseFloat(d.pwp); }));
-        let aapc = Array.from(MyData.map((d) => { return parseFloat(d.aapc); }));
+        //Integracion con el grupo Sep-rln
+        const URL_BASE_grupo_01 = "/api/v1/mercados";
+        const resData_4 = await fetch(URL_BASE_grupo_01);
+        let MyData_4 = await resData_4.json();
 
-
-        console.log("Graph_NONO");
+        //Paises
+        let countries2 = Array.from(MyData_4.map((d) => { if (countries.includes(d.Country)) { return d.Country; } }));
+        var filteredcountry = countries2.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredcountry);
+        //PWP
+        let pwp = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.pwp); } }));
+        var filteredpwp = pwp.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredpwp);
+        //AAPC
+        let aapc = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.aapc); } }));
+        var filteredaapc = aapc.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredaapc);
+        //Revenues
+        let revenues = Array.from(new Set(MyData_4.map((d) => { if (filteredcountry.includes(d.Country)) return parseFloat(d.Revenues); })));
+        var filteredreven = revenues.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredreven);
 
         Highcharts.chart('container', {
             chart: {
@@ -26,20 +48,22 @@
             },
             title: {
                 text: 'Gráfico de columnas con valores negativos. Fuente: <a href="https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_y_territorios_dependientes_por_poblaci%C3%B3n">Wikipedia.org</a>'
-                
             },
             xAxis: {
-                categories: countries
+                categories: filteredcountry
             },
             credits: {
                 enabled: false
             },
             series: [{
                 name: 'Porcentaje del total mundial(%)',
-                data: pwp
+                data: filteredpwp
             }, {
                 name: 'Cambio medio anual de la población(%)',
-                data: aapc
+                data: filteredaapc
+            }, {
+                name: 'Ingreso medio anual',
+                data: filteredreven
             }]
         });
     }

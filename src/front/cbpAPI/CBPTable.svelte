@@ -278,9 +278,6 @@
 			case 409:
 				responseError("Codigo de error: " + status + '\n' + "Conclifto con la operacion");
 				break;
-			case 408:
-				responseError("Codigo de error: " + status + '\n' + "Los datos tienen que estar entre 0 y 100");
-				break;
 			case 410:
 				responseError("Codigo de error: " + status + '\n' + "Los datos de ese pais en ese año ya están registrados");
 				break;
