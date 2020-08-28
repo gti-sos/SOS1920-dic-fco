@@ -171,20 +171,23 @@ module.exports = function (app) {
 		});
 	});
 
-	// GET yyyy/XXX/zzzs
+	// GET yyyy/XXX/zzz
 	app.get(BASE_API_URL + "/cbp/:country/:year", (req, res) => {
 
 		var country1 = req.params.country;
 		var year1 = req.params.year;
-
+	
 		db.find({ country: country1, year: Number(year1) }, (err, cbp) => {
 			deleteIDs(cbp);
 			res.send(JSON.stringify(cbp[0], null, 2));
 			console.log("Data sent:" + JSON.stringify(cbp[0], null, 2));
+			if (err == !0) {
+				res.sendStatus(404, "COUNTRY NOT FOUND");
+			}
+	
 		});
-		res.sendStatus(410, "BAD REQUEST");
+	
 	});
-
 	// POST
 	app.post(BASE_API_URL + "/cbp", (req, res) => {
 		var newcbp = req.body;
@@ -273,3 +276,14 @@ module.exports = function (app) {
 	});
 	console.log("cbp OK");
 };
+
+
+
+
+
+
+
+
+
+
+
