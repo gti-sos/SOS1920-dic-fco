@@ -1,5 +1,5 @@
 {"country":"Portugal","year":2019,"yfed":230,"pwp":0.13,"aapc":-0.31,"_id":"3rxBTVisxJCsoGpD"}
-{"country":"China","year":2020,"yfed":144,"pwp":18.05,"aapc":0.48,"_id":"FxADuQYJ43kVJ5pj"}
+{"country":"China","year":2020,"yfed":144,"pwp":18.05,"aapc":4,"_id":"FxADuQYJ43kVJ5pj"}
 {"country":"India","year":2020,"yfed":43,"pwp":18.13,"aapc":1.64,"_id":"HQmYZiGeNnRXtsuD"}
 {"country":"Italy","year":2020,"yfed":230,"pwp":0.78,"aapc":0.3,"_id":"JzAFPPsK5Zw94Gbr"}
 {"country":"Germany","year":2020,"yfed":169,"pwp":1.07,"aapc":0.41,"_id":"WGOpuJsMcs61cDGP"}
@@ -7,4 +7,3 @@
 {"country":"Spain","year":2020,"yfed":147,"pwp":0.61,"aapc":0.47,"_id":"YD0RHPQ0FBV7u07S"}
 {"country":"Belgium","year":2020,"yfed":139,"pwp":0.15,"aapc":0.5,"_id":"cLW1GW0IjYFTQVHf"}
 {"country":"U.S","year":2020,"yfed":99,"pwp":4.27,"aapc":0.71,"_id":"q3dC71dx0SoR0km4"}
-{"country":"China","year":2020,"yfed":144,"pwp":18.05,"aapc":4,"_id":"FxADuQYJ43kVJ5pj"}

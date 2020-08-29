@@ -7,14 +7,12 @@
 
 
         const BASE_API_URL = "/api/v1/cbp";
-
         const resData = await fetch(BASE_API_URL);
         let MyData = await resData.json();
         let countries = Array.from(MyData.map((d) => { return d.country; }));
-        console.log(countries);
         //Integracion con el grupo Sep-rln
-        const URL_BASE_grupo_RLN = "/api/v3/global-marriages";
-        const resData_2 = await fetch(URL_BASE_grupo_RLN);
+        const URL_BASE_grupo_29 = "/api/v2/emp-stats";
+        const resData_2 = await fetch(URL_BASE_grupo_29);
         let MyData_2 = await resData_2.json();
         let countriesGroup = Array.from(MyData_2.map((d) => { return d.country; }));
         console.log(countriesGroup);
@@ -37,19 +35,19 @@
         });
         console.log(filteredaapc);
         //Revenues
-
-        let avg_wm = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseFloat(d.avg_wm)]; }))
-        var filteredavg_wm = avg_wm.filter(function (el) {
+        let emp_female_age15_24 = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseFloat(d.emp_female_age15_24)]; }))
+        var filteredemp_female_age15_24 = emp_female_age15_24.filter(function (el) {
             return el != null;
         });
+        console.log(filteredemp_female_age15_24);
 
         function reordena(a1, a2) {
             let res = [];
             let aux = [];
             for (let e = 0; e < a1.length; e++) {
                 for (let i = 0; i < a2.length; i++) {
-                    if (a2[i].includes(a1[e])){
-                        if(!aux.includes(a2[i][0])){
+                    if (a2[i].includes(a1[e])) {
+                        if (!aux.includes(a2[i][0])) {
                             aux.push(a2[i][0])
                             res.push(a2[i][1])
                         }
@@ -58,44 +56,67 @@
             }
             return res;
         }
-        console.log(reordena(filteredcountry, filteredavg_wm));
+        console.log(reordena(filteredcountry, filteredemp_female_age15_24));
 
         Highcharts.chart('container', {
             chart: {
-                type: 'bar'
+                type: 'column'
             },
             title: {
-                text: 'Stacked bar chart'
+                text: 'Efficiency Optimization by Branch'
             },
             xAxis: {
-                categories: filteredcountry
+                categories: countries
             },
-            yAxis: {
+            yAxis: [{
                 min: 0,
                 title: {
-                    text: ''
+                    text: '%'
                 }
-            },
+            }, {
+                title: {
+                    text: '%'
+                },
+                opposite: true
+            }],
             legend: {
-                reversed: true
+                shadow: false
+            },
+            tooltip: {
+                shared: true
             },
             plotOptions: {
-                series: {
-                    stacking: 'normal'
+                column: {
+                    grouping: false,
+                    shadow: false,
+                    borderWidth: 0
                 }
             },
             series: [{
-                name: 'Porcentaje del total mundial(%)',
-                data: filteredpwp
+                name: 'Porcentaje poblacional del total mundial(%)',
+                color: 'rgba(165,170,217,1)',
+                data: filteredpwp,
+                pointPadding: 0.3,
+                pointPlacement: -0.2
             }, {
                 name: 'Cambio medio anual de la población(%)',
-                data: filteredaapc
+                color: 'rgba(126,86,134,.9)',
+                data: filteredaapc,
+                pointPadding: 0.4,
+                pointPlacement: -0.2
             }, {
-                name: 'Media de edad en hombres al casarse',
-                data: reordena(filteredcountry, filteredavg_wm)
+                name: 'Porcentajes de empleos femeninos',
+                color: 'rgba(248,161,63,1)',
+                data: reordena(filteredcountry, filteredemp_female_age15_24),
+                tooltip: {
+                    valuePrefix: '$',
+                    valueSuffix: ' M'
+                },
+                pointPadding: 0.3,
+                pointPlacement: 0.2,
+                yAxis: 1
             }]
         });
-
     }
 
 </script>

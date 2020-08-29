@@ -15,6 +15,8 @@
 	//Integraciones
 	import IntegracionRLN from './cbpAPI/IntegracionRLN.svelte';
 	import IntegracionGrupo10 from './cbpAPI/IntegracionGrupo10.svelte';
+	import IntegracionGrupo12 from './cbpAPI/IntegracionGrupo12.svelte';
+	import IntegracionGrupo29 from './cbpAPI/IntegracionGrupo29.svelte';
 	
 	const routes = {
 		"/": Home,
@@ -24,6 +26,8 @@
 		"/cbpAPI":cbp, 
 		"/IntegracionRLN":IntegracionRLN,
 		"/IntegracionGrupo10":IntegracionGrupo10,
+		"/IntegracionGrupo12":IntegracionGrupo12,
+		"/IntegracionGrupo29":IntegracionGrupo29,
 		"*": NotFound
 	};
 </script>

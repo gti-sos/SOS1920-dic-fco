@@ -106,12 +106,27 @@ module.exports = function (app) {
 	});
 	app.use(express.static('.'));
 
+	//GRUPO 12
+	const URL_3 = 'https://sos1920-12.herokuapp.com';
+	app.use("/api/v2/school-dropouts", function (req, res) {
+		console.log("GET API school-dropouts");
+		var url = URL_3 + req.baseUrl + req.url;
+		console.log("URL_Grupo_12: " + url);
+		console.log('piped: ' + req.baseUrl + req.url);
+		req.pipe(request(url)).pipe(res);
+	});
+	app.use(express.static('.'));
 
-
-
-
-
-
+	//GRUPO 29
+	const URL_4 = 'https://sos1920-29.herokuapp.com';
+	app.use("/api/v2/emp-stats", function (req, res) {
+		console.log("GET API emp-stats");
+		var url = URL_4 + req.baseUrl + req.url;
+		console.log("URL_Grupo_29: " + url);
+		console.log('piped: ' + req.baseUrl + req.url);
+		req.pipe(request(url)).pipe(res);
+	});
+	app.use(express.static('.'));
 
 
 

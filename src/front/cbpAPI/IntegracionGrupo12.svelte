@@ -7,13 +7,11 @@
 
 
         const BASE_API_URL = "/api/v1/cbp";
-
         const resData = await fetch(BASE_API_URL);
         let MyData = await resData.json();
         let countries = Array.from(MyData.map((d) => { return d.country; }));
-        console.log(countries);
         //Integracion con el grupo Sep-rln
-        const URL_BASE_grupo_RLN = "/api/v3/global-marriages";
+        const URL_BASE_grupo_RLN = "/api/v2/school-dropouts";
         const resData_2 = await fetch(URL_BASE_grupo_RLN);
         let MyData_2 = await resData_2.json();
         let countriesGroup = Array.from(MyData_2.map((d) => { return d.country; }));
@@ -24,32 +22,27 @@
             return el != null;
         });
         console.log(filteredcountry);
-        //PWP
-        let pwp = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.pwp); } }));
-        var filteredpwp = pwp.filter(function (el) {
+        //Yfed
+        let yfed = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.yfed); } }));
+        var filteredyfed = yfed.filter(function (el) {
             return el != null;
         });
-        console.log(filteredpwp);
-        //AAPC
-        let aapc = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.aapc); } }));
-        var filteredaapc = aapc.filter(function (el) {
-            return el != null;
-        });
-        console.log(filteredaapc);
+        console.log(filteredyfed);
         //Revenues
 
-        let avg_wm = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseFloat(d.avg_wm)]; }))
-        var filteredavg_wm = avg_wm.filter(function (el) {
+        let sd_all = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseFloat(d.sd_all)]; }))
+        var filteredsd_all = sd_all.filter(function (el) {
             return el != null;
         });
+        console.log(filteredsd_all);
 
         function reordena(a1, a2) {
             let res = [];
             let aux = [];
             for (let e = 0; e < a1.length; e++) {
                 for (let i = 0; i < a2.length; i++) {
-                    if (a2[i].includes(a1[e])){
-                        if(!aux.includes(a2[i][0])){
+                    if (a2[i].includes(a1[e])) {
+                        if (!aux.includes(a2[i][0])) {
                             aux.push(a2[i][0])
                             res.push(a2[i][1])
                         }
@@ -58,41 +51,27 @@
             }
             return res;
         }
-        console.log(reordena(filteredcountry, filteredavg_wm));
+        console.log(reordena(filteredcountry, filteredsd_all));
 
         Highcharts.chart('container', {
             chart: {
-                type: 'bar'
+                type: 'area'
             },
             title: {
-                text: 'Stacked bar chart'
+                text: 'Gráfico de area con valores negativos'
             },
             xAxis: {
                 categories: filteredcountry
             },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: ''
-                }
-            },
-            legend: {
-                reversed: true
-            },
-            plotOptions: {
-                series: {
-                    stacking: 'normal'
-                }
+            credits: {
+                enabled: false
             },
             series: [{
-                name: 'Porcentaje del total mundial(%)',
-                data: filteredpwp
+                name: 'Años para duplicar población',
+                data: filteredyfed
             }, {
-                name: 'Cambio medio anual de la población(%)',
-                data: filteredaapc
-            }, {
-                name: 'Media de edad en hombres al casarse',
-                data: reordena(filteredcountry, filteredavg_wm)
+                name: 'Abandonos escolares',
+                data: reordena(filteredcountry, filteredsd_all)
             }]
         });
 

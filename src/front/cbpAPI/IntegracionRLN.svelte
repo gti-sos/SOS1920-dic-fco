@@ -48,12 +48,16 @@
             return el != null;
         });
 
-        function reordena(filteredcountry, filteredreven) {
-            let res=[];
-            for (let e = 0; e < filteredcountry.length; e++){
-                for (let i = 0; i < filteredreven.length; i++) {
-                    if(filteredreven[i].includes(filteredcountry[e])){
-                        res.push(filteredreven[i][1])
+        function reordena(a1, a2) {
+            let res = [];
+            let aux = [];
+            for (let e = 0; e < a1.length; e++) {
+                for (let i = 0; i < a2.length; i++) {
+                    if (a2[i].includes(a1[e])){
+                        if(!aux.includes(a2[i][0])){
+                            aux.push(a2[i][0])
+                            res.push(a2[i][1])
+                        }
                     }
                 }
             }
