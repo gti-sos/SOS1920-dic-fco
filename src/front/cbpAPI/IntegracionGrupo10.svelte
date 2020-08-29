@@ -11,18 +11,24 @@
         const resData = await fetch(BASE_API_URL);
         let MyData = await resData.json();
         let countries = Array.from(MyData.map((d) => { return d.country; }));
-
+        console.log(countries);
         //Integracion con el grupo Sep-rln
-        const URL_BASE_grupo_01 = "/api/v1/mercados";
-        const resData_4 = await fetch(URL_BASE_grupo_01);
-        let MyData_4 = await resData_4.json();
-
+        const URL_BASE_grupo_RLN = "/api/v3/global-marriages";
+        const resData_2 = await fetch(URL_BASE_grupo_RLN);
+        let MyData_2 = await resData_2.json();
+        let countriesGroup = Array.from(MyData_2.map((d) => { return d.country; }));
+        console.log(countriesGroup);
         //Paises
-        let countries2 = Array.from(MyData_4.map((d) => { if (countries.includes(d.Country)) { return d.Country; } }));
-        var filteredcountry = countries2.filter(function (el) {
+        let countries2Group = Array.from(MyData.map((d) => { if (countriesGroup.includes(d.country)) { return d.country; } }));
+        var filteredcountry = countries2Group.filter(function (el) {
             return el != null;
         });
         console.log(filteredcountry);
+        //Paises Group
+        let countries2 = Array.from(MyData_2.map((d) => { if (countries.includes(d.country)) { return d.country; } }));
+        var filteredcountryGroup = countries2.filter(function (el) {
+            return el != null;
+        });
         //PWP
         let pwp = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.pwp); } }));
         var filteredpwp = pwp.filter(function (el) {
@@ -36,24 +42,48 @@
         });
         console.log(filteredaapc);
         //Revenues
-        let revenues = Array.from(new Set(MyData_4.map((d) => { if (filteredcountry.includes(d.Country)) return parseFloat(d.Revenues); })));
-        var filteredreven = revenues.filter(function (el) {
+
+        let avg_wm = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseFloat(d.avg_wm)]; }))
+        var filteredavg_wm = avg_wm.filter(function (el) {
             return el != null;
         });
-        console.log(filteredreven);
+
+        function reordena(a1, a2) {
+            let res = [];
+            for (let e = 0; e < a1.length; e++) {
+                for (let i = 0; i < a2.length; i++) {
+                    if (a2[i].includes(a1[e])) {
+                        res.push(a2[i][1])
+                    }
+                }
+            }
+            return res;
+        }
+        console.log(reordena(filteredcountry, filteredavg_wm));
 
         Highcharts.chart('container', {
             chart: {
-                type: 'column'
+                type: 'bar'
             },
             title: {
-                text: 'Gráfico de columnas con valores negativos. Fuente: <a href="https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_y_territorios_dependientes_por_poblaci%C3%B3n">Wikipedia.org</a>'
+                text: 'Stacked bar chart'
             },
             xAxis: {
                 categories: filteredcountry
             },
-            credits: {
-                enabled: false
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
             },
             series: [{
                 name: 'Porcentaje del total mundial(%)',
@@ -62,10 +92,11 @@
                 name: 'Cambio medio anual de la población(%)',
                 data: filteredaapc
             }, {
-                name: 'Ingreso medio anual',
-                data: filteredreven
+                name: 'Media de edad en hombres al casarse',
+                data: reordena(filteredcountry, filteredavg_wm)
             }]
         });
+
     }
 
 </script>
@@ -95,10 +126,7 @@
         background-color: #DA7E3F;
         border-radius: 6px;
         height: 45px;
-    }
-
-    #container {
-        height: 400px;
+        text-align: center;
     }
 
     .highcharts-figure,
@@ -106,6 +134,10 @@
         min-width: 310px;
         max-width: 800px;
         margin: 1em auto;
+    }
+
+    #container {
+        height: 400px;
     }
 
     .highcharts-data-table table {

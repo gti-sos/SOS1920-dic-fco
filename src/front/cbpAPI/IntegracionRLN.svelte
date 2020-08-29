@@ -1,9 +1,7 @@
 <script>
     import Button from "sveltestrap/src/Button.svelte";
-    import {
-        pop
-    } from "svelte-spa-router";
-    import { onMount } from 'svelte';
+    import { pop } from "svelte-spa-router";
+
 
     async function loadGraph() {
 
@@ -12,13 +10,57 @@
 
         const resData = await fetch(BASE_API_URL);
         let MyData = await resData.json();
+        let countries = Array.from(MyData.map((d) => { return d.country; }));
+        console.log(countries);
+        //Integracion con el grupo Sep-rln
+        const URL_BASE_grupo_RLN = "/api/v1/mercados";
+        const resData_2 = await fetch(URL_BASE_grupo_RLN);
+        let MyData_2 = await resData_2.json();
+        let countriesGroup = Array.from(MyData_2.map((d) => { return d.Country; }));
+        console.log(countriesGroup);
+        //Paises
+        let countries2Group = Array.from(MyData.map((d) => { if (countriesGroup.includes(d.country)) { return d.country; } }));
+        var filteredcountry = countries2Group.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredcountry);
+        //Paises Group
+        let countries2 = Array.from(MyData_2.map((d) => { if (countries.includes(d.Country)) { return d.Country; } }));
+        var filteredcountryGroup = countries2.filter(function (el) {
+            return el != null;
+        });
+        //PWP
+        let pwp = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.pwp); } }));
+        var filteredpwp = pwp.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredpwp);
+        //AAPC
+        let aapc = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.aapc); } }));
+        var filteredaapc = aapc.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredaapc);
+        //Revenues
 
-        let countries = Array.from(MyData.map((d) => { return d.country + " " + d.year; }));
-        let pwp = Array.from(MyData.map((d) => { return parseFloat(d.pwp); }));
-        let aapc = Array.from(MyData.map((d) => { return parseFloat(d.aapc); }));
+        let revenues = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.Country)) return [d.Country, parseFloat(d.Revenues)]; }))
+        var filteredreven = revenues.filter(function (el) {
+            return el != null;
+        });
 
+        function reordena(filteredcountry, filteredreven) {
+            let res=[];
+            for (let e = 0; e < filteredcountry.length; e++){
+                for (let i = 0; i < filteredreven.length; i++) {
+                    if(filteredreven[i].includes(filteredcountry[e])){
+                        res.push(filteredreven[i][1])
+                    }
+                }
+            }
+            return res;
+        }
+        console.log(reordena(filteredcountry, filteredreven));
 
-        console.log("Graph_NONO");
 
         Highcharts.chart('container', {
             chart: {
@@ -26,20 +68,22 @@
             },
             title: {
                 text: 'Gráfico de columnas con valores negativos. Fuente: <a href="https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_y_territorios_dependientes_por_poblaci%C3%B3n">Wikipedia.org</a>'
-                
             },
             xAxis: {
-                categories: countries
+                categories: filteredcountry
             },
             credits: {
                 enabled: false
             },
             series: [{
-                name: 'Porcentaje poblacional del total mundial(%)',
-                data: pwp
+                name: 'Porcentaje del total mundial(%)',
+                data: filteredpwp
             }, {
                 name: 'Cambio medio anual de la población(%)',
-                data: aapc
+                data: filteredaapc
+            }, {
+                name: 'Ingreso medio anual(k)',
+                data: reordena(filteredcountry, filteredreven)
             }]
         });
     }
@@ -71,7 +115,7 @@
         background-color: #DA7E3F;
         border-radius: 6px;
         height: 45px;
-        text-align:center;
+        text-align: center;
     }
 
     #container {

@@ -13,7 +13,8 @@
 	import CBPPieChart from './cbpAPI/CBPPieChart.svelte';
 
 	//Integraciones
-	import IntegracionClase1 from './cbpAPI/IntegracionClase1.svelte';
+	import IntegracionRLN from './cbpAPI/IntegracionRLN.svelte';
+	import IntegracionGrupo10 from './cbpAPI/IntegracionGrupo10.svelte';
 	
 	const routes = {
 		"/": Home,
@@ -21,7 +22,8 @@
 		"/CBPPieChart":CBPPieChart,
 		"/cbp/:country/:year":Editcbp,
 		"/cbpAPI":cbp, 
-		"/IntegracionClase1":IntegracionClase1,
+		"/IntegracionRLN":IntegracionRLN,
+		"/IntegracionGrupo10":IntegracionGrupo10,
 		"*": NotFound
 	};
 </script>

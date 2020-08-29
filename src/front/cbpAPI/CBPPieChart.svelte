@@ -59,8 +59,7 @@
         border-radius: 6px;
     }
     h2, p{
-        margin-left:10px;
+        text-align: center;
     }
-    
    
 </style>

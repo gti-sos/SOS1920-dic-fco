@@ -84,12 +84,23 @@ module.exports = function (app) {
 	/////////////////////////////////////////
 	////////////////////////////////////////
 
-
-	const URL_05 = 'https://sos1920-sep-rnl.herokuapp.com';
+	//RLN
+	const URL_1 = 'https://sos1920-sep-rnl.herokuapp.com';
 	app.use("/api/v1/mercados", function (req, res) {
-		console.log("GET API Ruben");
-		var url = URL_05 + req.baseUrl + req.url;
-		console.log("URL_Ruben: " + url);
+		console.log("GET API MERCADOS");
+		var url = URL_1 + req.baseUrl + req.url;
+		console.log("URL_RLN: " + url);
+		console.log('piped: ' + req.baseUrl + req.url);
+		req.pipe(request(url)).pipe(res);
+	});
+	app.use(express.static('.'));
+
+	//GRUPO 10
+	const URL_2 = 'https://sos1920-10.herokuapp.com';
+	app.use("/api/v3/global-marriages", function (req, res) {
+		console.log("GET API Marriages");
+		var url = URL_2 + req.baseUrl + req.url;
+		console.log("URL_Grupo_10: " + url);
 		console.log('piped: ' + req.baseUrl + req.url);
 		req.pipe(request(url)).pipe(res);
 	});
