@@ -1,0 +1,570 @@
+{
+	"id": "754a4822-df2c-4937-bd12-fb0accfb792c",
+	"name": "SOS1920-sep-fco-cbp",
+	"timestamp": "2020-08-30T17:00:13.180Z",
+	"collection_id": "c49e2ea8-d2fc-4ccc-b4b6-8173bb282a75",
+	"folder_id": 0,
+	"environment_id": "7419f4c6-df66-4b14-b8d8-982aead51f9d",
+	"totalPass": 18,
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "b49e2584-5d5e-4e31-af33-fb27629ce970",
+			"name": "get cbp loadInitialData",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/loadInitialData",
+			"time": 491,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				491
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "64310c0a-0ddb-4a58-86a2-7b90837e3401",
+			"name": "get cbp",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"time": 108,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				108
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ab2bbcfd-1893-46ef-a6d0-b0aef498354d",
+			"name": "get cbp/country",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Germany",
+			"time": 110,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				110
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0ea48f00-15fb-40a9-a098-f9e35242a6c9",
+			"name": "get cbp/country/year",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Germany/2020",
+			"time": 108,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				108
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8446f6fe-4f23-45a7-83cc-6791502eb3d5",
+			"name": "post cbp",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"time": 124,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				124
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "5e754693-c9ce-4f8f-9079-1af9a5e990a6",
+			"name": "post cbp fallo",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"time": 106,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 201": false
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				106
+			],
+			"allTests": [
+				{
+					"Status code is 201": false
+				}
+			]
+		},
+		{
+			"id": "93771d9a-2fc1-4ae8-bca8-13e234e48e1b",
+			"name": "post cbp/country",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Spain",
+			"time": 114,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {
+				"Status code is 405": true
+			},
+			"testPassFailCounts": {
+				"Status code is 405": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				114
+			],
+			"allTests": [
+				{
+					"Status code is 405": true
+				}
+			]
+		},
+		{
+			"id": "6c44526a-dfd2-4ded-8497-28ad54096219",
+			"name": "post cbp/country/year",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Spain/2020",
+			"time": 109,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {
+				"Status code is 405": true
+			},
+			"testPassFailCounts": {
+				"Status code is 405": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				109
+			],
+			"allTests": [
+				{
+					"Status code is 405": true
+				}
+			]
+		},
+		{
+			"id": "acfaa625-306e-4b22-b6c8-575266ef1cd3",
+			"name": "put cbp",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"time": 109,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {
+				"Status code is 405": true
+			},
+			"testPassFailCounts": {
+				"Status code is 405": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				109
+			],
+			"allTests": [
+				{
+					"Status code is 405": true
+				}
+			]
+		},
+		{
+			"id": "6775ab59-6589-4564-953b-0313c59dfb69",
+			"name": "put cbp/country/year",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/China/2020",
+			"time": 109,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				109
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "2940b46c-d2aa-492f-ab43-a96f84762f88",
+			"name": "get busqueda 1",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?country=Spain&year=2020",
+			"time": 112,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify year": true,
+				"There is 1 country": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Verify year": {
+					"pass": 1,
+					"fail": 0
+				},
+				"There is 1 country": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				112
+			],
+			"allTests": [
+				{
+					"Verify year": true,
+					"There is 1 country": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "11f11483-c4a6-46c0-869b-10fd83d20855",
+			"name": "get busqueda 2",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?year=2020",
+			"time": 112,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify year": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Verify year": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				112
+			],
+			"allTests": [
+				{
+					"Verify year": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "d1c42f91-bcc6-4b86-9925-25187e4094a5",
+			"name": "get busqueda 3",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?pwp=0.61%0A&aapc=0.47",
+			"time": 110,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"There is 1 country": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"There is 1 country": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				110
+			],
+			"allTests": [
+				{
+					"There is 1 country": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "6d9e48ea-55d7-4b33-8581-e82109d3aa60",
+			"name": "get paginacion 1",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?offset=1&limit=2",
+			"time": 109,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				109
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "09599119-e11b-401c-b314-a51dcf3e889e",
+			"name": "get paginacion 2",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?offset=4&limit=2",
+			"time": 112,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"There is 2 country": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"There is 2 country": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				112
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"There is 2 country": true
+				}
+			]
+		},
+		{
+			"id": "bd19525b-3372-41b6-8783-67f04493fe78",
+			"name": "delete ppa/country",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Spain",
+			"time": 115,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				115
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "a4ef1fc6-d345-4714-a59d-021fe872bf08",
+			"name": "delete ppa/country/year",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/India/2020",
+			"time": 111,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				111
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "3cd97958-7cab-4a78-96a1-5df755a4bb9c",
+			"name": "delete ppa",
+			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"time": 111,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				111
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2380,
+	"collection": {
+		"requests": [
+			{
+				"id": "b49e2584-5d5e-4e31-af33-fb27629ce970",
+				"method": "GET"
+			},
+			{
+				"id": "64310c0a-0ddb-4a58-86a2-7b90837e3401",
+				"method": "GET"
+			},
+			{
+				"id": "ab2bbcfd-1893-46ef-a6d0-b0aef498354d",
+				"method": "GET"
+			},
+			{
+				"id": "0ea48f00-15fb-40a9-a098-f9e35242a6c9",
+				"method": "GET"
+			},
+			{
+				"id": "8446f6fe-4f23-45a7-83cc-6791502eb3d5",
+				"method": "POST"
+			},
+			{
+				"id": "5e754693-c9ce-4f8f-9079-1af9a5e990a6",
+				"method": "POST"
+			},
+			{
+				"id": "93771d9a-2fc1-4ae8-bca8-13e234e48e1b",
+				"method": "POST"
+			},
+			{
+				"id": "6c44526a-dfd2-4ded-8497-28ad54096219",
+				"method": "POST"
+			},
+			{
+				"id": "acfaa625-306e-4b22-b6c8-575266ef1cd3",
+				"method": "PUT"
+			},
+			{
+				"id": "6775ab59-6589-4564-953b-0313c59dfb69",
+				"method": "PUT"
+			},
+			{
+				"id": "2940b46c-d2aa-492f-ab43-a96f84762f88",
+				"method": "GET"
+			},
+			{
+				"id": "11f11483-c4a6-46c0-869b-10fd83d20855",
+				"method": "GET"
+			},
+			{
+				"id": "d1c42f91-bcc6-4b86-9925-25187e4094a5",
+				"method": "GET"
+			},
+			{
+				"id": "6d9e48ea-55d7-4b33-8581-e82109d3aa60",
+				"method": "GET"
+			},
+			{
+				"id": "09599119-e11b-401c-b314-a51dcf3e889e",
+				"method": "GET"
+			},
+			{
+				"id": "bd19525b-3372-41b6-8783-67f04493fe78",
+				"method": "DELETE"
+			},
+			{
+				"id": "a4ef1fc6-d345-4714-a59d-021fe872bf08",
+				"method": "DELETE"
+			},
+			{
+				"id": "3cd97958-7cab-4a78-96a1-5df755a4bb9c",
+				"method": "DELETE"
+			}
+		]
+	}
+}

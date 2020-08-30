@@ -19,6 +19,7 @@
 	import IntegracionGrupo29 from './cbpAPI/IntegracionGrupo29.svelte';
 	import IntegracionExterna from './cbpAPI/IntegracionExterna.svelte';
 	import IntegracionExterna2 from './cbpAPI/IntegracionExterna2.svelte';
+	import Integrations from './Integrations.svelte';
 	
 	const routes = {
 		"/": Home,
@@ -32,6 +33,7 @@
 		"/IntegracionGrupo29":IntegracionGrupo29,
 		"/IntegracionExterna":IntegracionExterna,
 		"/IntegracionExterna2":IntegracionExterna2,
+		"/Integrations":Integrations,
 		"*": NotFound
 	};
 </script>

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rollup -c",
+    "test":"npx newman run tests/cbpTest.json",
     "dev": "rollup -c -w",
     "start": "node index"
   },

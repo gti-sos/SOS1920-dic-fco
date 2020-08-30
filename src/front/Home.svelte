@@ -9,22 +9,7 @@
 		<button type="button"   class="btn"  onclick="window.location.href='#/CBPPieChart'">Gráfico 2 API</button>
 	</div>
 	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionRLN'">Integración API 1</button>
-	</div>
-	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionGrupo10'">Integración API 2</button>
-	</div>
-	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionGrupo12'">Integración API 3</button>
-	</div>
-	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionGrupo29'">Integración API 4</button>
-	</div>
-	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionExterna'">Integración API Externa 1</button>
-	</div>
-	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionExterna2'">Integración API Externa 2</button>
+		<button type="button"   class="btn"  onclick="window.location.href='#/Integrations'">Integraciones</button>
 	</div>
 </main>
 <style>
@@ -40,7 +25,7 @@
 		padding: 6px;
 		font-weight: 600;
 		font-size: 30px;
-		margin-bottom:5px;
+		margin-bottom:21px;
 	}
 	.btn:hover {
 
