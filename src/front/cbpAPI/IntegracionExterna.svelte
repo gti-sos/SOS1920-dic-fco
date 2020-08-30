@@ -11,8 +11,8 @@
         let MyData = await resData.json();
         let countries = Array.from(MyData.map((d) => { return d.country; }));
         //Integracion con el grupo Sep-rln
-        const URL_BASE_grupo_RLN = "/api/v2/school-dropouts";
-        const resData_2 = await fetch(URL_BASE_grupo_RLN);
+        const URL_BASE_externa = "/v2/countries";
+        const resData_2 = await fetch(URL_BASE_externa);
         let MyData_2 = await resData_2.json();
         let countriesGroup = Array.from(MyData_2.map((d) => { return d.country; }));
         console.log(countriesGroup);
@@ -22,19 +22,24 @@
             return el != null;
         });
         console.log(filteredcountry);
-        //Yfed
-        let yfed = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.yfed); } }));
-        var filteredyfed = yfed.filter(function (el) {
+        //PWP
+        let pwp = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.pwp); } }));
+        var filteredpwp = pwp.filter(function (el) {
             return el != null;
         });
-        console.log(filteredyfed);
-        //Revenues
-
-        let sd_all = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseFloat(d.sd_all)]; }))
-        var filteredsd_all = sd_all.filter(function (el) {
+        console.log(filteredpwp);
+        //AAPC
+        let aapc = Array.from(MyData.map((d) => { if (filteredcountry.includes(d.country)) { return parseFloat(d.aapc); } }));
+        var filteredaapc = aapc.filter(function (el) {
             return el != null;
         });
-        console.log(filteredsd_all);
+        console.log(filteredaapc);
+        //Actives
+        let active = Array.from(MyData_2.map((d) => { if (filteredcountry.includes(d.country)) return [d.country, parseInt(d.active)]; }))
+        var filteredactive = active.filter(function (el) {
+            return el != null;
+        });
+        console.log(filteredactive);
 
         function reordena(a1, a2) {
             let res = [];
@@ -51,30 +56,67 @@
             }
             return res;
         }
-        console.log(reordena(filteredcountry, filteredsd_all));
+        console.log(reordena(filteredcountry, filteredactive));
 
         Highcharts.chart('container', {
             chart: {
-                type: 'area'
+                type: 'column'
             },
             title: {
-                text: 'Gráfico de area con valores negativos '
+                text: 'Efficiency Optimization by Branch'
             },
             xAxis: {
                 categories: filteredcountry
             },
-            credits: {
-                enabled: false
+            yAxis: [{
+                min: 0,
+                title: {
+                    text: '%'
+                }
+            }, {
+                title: {
+                    text: ''
+                },
+                opposite: true
+            }],
+            legend: {
+                shadow: false
+            },
+            tooltip: {
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    grouping: false,
+                    shadow: false,
+                    borderWidth: 0
+                }
             },
             series: [{
-                name: 'Años para duplicar población',
-                data: filteredyfed
+                name: 'Porcentaje poblacional del total mundial(%)',
+                color: 'rgba(165,170,217,1)',
+                data: filteredpwp,
+                pointPadding: 0.3,
+                pointPlacement: -0.2
             }, {
-                name: 'Abandonos escolares',
-                data: reordena(filteredcountry, filteredsd_all)
+                name: 'Cambio medio anual de la población(%)',
+                color: 'rgba(126,86,134,.9)',
+                data: filteredaapc,
+                pointPadding: 0.4,
+                pointPlacement: -0.2
+            }, {
+                name: 'Casos activos de coronavirus',
+                color: 'rgba(248,161,63,1)',
+                data: reordena(filteredcountry, filteredactive),
+                tooltip: {
+                    valuePrefix: '',
+                    valueSuffix: ' '
+                },
+                pointPadding: 0.3,
+                pointPlacement: 0.2,
+                yAxis: 1
             }]
         });
-
     }
 
 </script>

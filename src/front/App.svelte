@@ -17,6 +17,8 @@
 	import IntegracionGrupo10 from './cbpAPI/IntegracionGrupo10.svelte';
 	import IntegracionGrupo12 from './cbpAPI/IntegracionGrupo12.svelte';
 	import IntegracionGrupo29 from './cbpAPI/IntegracionGrupo29.svelte';
+	import IntegracionExterna from './cbpAPI/IntegracionExterna.svelte';
+	import IntegracionExterna2 from './cbpAPI/IntegracionExterna2.svelte';
 	
 	const routes = {
 		"/": Home,
@@ -28,6 +30,8 @@
 		"/IntegracionGrupo10":IntegracionGrupo10,
 		"/IntegracionGrupo12":IntegracionGrupo12,
 		"/IntegracionGrupo29":IntegracionGrupo29,
+		"/IntegracionExterna":IntegracionExterna,
+		"/IntegracionExterna2":IntegracionExterna2,
 		"*": NotFound
 	};
 </script>

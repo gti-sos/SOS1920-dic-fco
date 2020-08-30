@@ -128,9 +128,18 @@ module.exports = function (app) {
 	});
 	app.use(express.static('.'));
 
+	//Api externa
+	const URL_5 = 'https://corona.lmao.ninja';
+	app.use("/v2/countries", function (req, res) {
+		console.log("GET API externa 1");
+		var url = URL_5 + req.baseUrl + req.url;
+		console.log("URL_Ex: " + url);
+		console.log('piped: ' + req.baseUrl + req.url);
+		req.pipe(request(url)).pipe(res);
+	});
+	app.use(express.static('.'));
 
-
-
+	
 
 
 	function deleteIDs(cbp) {
@@ -202,7 +211,7 @@ module.exports = function (app) {
 
 		var country1 = req.params.country;
 		var year1 = req.params.year;
-	
+
 		db.find({ country: country1, year: Number(year1) }, (err, cbp) => {
 			deleteIDs(cbp);
 			res.send(JSON.stringify(cbp[0], null, 2));
@@ -210,9 +219,9 @@ module.exports = function (app) {
 			if (err == !0) {
 				res.sendStatus(404, "COUNTRY NOT FOUND");
 			}
-	
+
 		});
-	
+
 	});
 	// POST
 	app.post(BASE_API_URL + "/cbp", (req, res) => {

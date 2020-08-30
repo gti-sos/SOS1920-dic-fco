@@ -20,6 +20,12 @@
 	<div class="div-home" style="text-align:center;" >
 		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionGrupo29'">Integración API 4</button>
 	</div>
+	<div class="div-home" style="text-align:center;" >
+		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionExterna'">Integración API Externa 1</button>
+	</div>
+	<div class="div-home" style="text-align:center;" >
+		<button type="button"   class="btn"  onclick="window.location.href='#/IntegracionExterna2'">Integración API Externa 2</button>
+	</div>
 </main>
 <style>
 	.btn{
