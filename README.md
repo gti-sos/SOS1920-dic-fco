@@ -8,4 +8,4 @@
 
 -  **HEROKU**: [sos1920-sep-fco](https://sos1920-sep-fco.herokuapp.com/)
 
--  **POSTMAN**: [documenter]
+-  **POSTMAN**: [enlace](https://documenter.getpostman.com/view/10637421/TVCdzTLw)
