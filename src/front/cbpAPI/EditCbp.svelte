@@ -148,7 +148,7 @@
     {#await cbp}
         Loading cbp...
     {:then cbp}
-        <Table bordered>
+        <Table bordered style="background-color: #001C3C;">
             <thead>
                 <tr>
                     <th>Pais</th>
@@ -176,3 +176,17 @@
     {/if}
     <Button outline color="secondary" on:click="{pop}">Atras</Button>
 </main>
+
+<style>
+    h3{
+        background-color:#DA7E3F;
+        height: 40px;
+        border-radius:6px;
+    }
+    th{
+        color:#E8E8E8
+    }
+    td {
+        color:#E8E8E8
+    }
+    </style>

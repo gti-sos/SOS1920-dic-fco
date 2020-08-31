@@ -20,6 +20,7 @@
 	import IntegracionExterna from './cbpAPI/IntegracionExterna.svelte';
 	import IntegracionExterna2 from './cbpAPI/IntegracionExterna2.svelte';
 	import Integrations from './Integrations.svelte';
+	import sobremi from './cbpAPI/sobremi.svelte';
 	
 	const routes = {
 		"/": Home,
@@ -34,6 +35,7 @@
 		"/IntegracionExterna":IntegracionExterna,
 		"/IntegracionExterna2":IntegracionExterna2,
 		"/Integrations":Integrations,
+		"/sobremi":sobremi,
 		"*": NotFound
 	};
 </script>

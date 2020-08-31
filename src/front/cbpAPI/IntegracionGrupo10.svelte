@@ -65,7 +65,7 @@
                 type: 'bar'
             },
             title: {
-                text: 'Stacked bar chart'
+                text: ''
             },
             xAxis: {
                 categories: filteredcountry
@@ -113,8 +113,8 @@
     <Button color="info" on:click="{pop}">Atrás</Button>
     <figure class="highcharts-figure">
         <div id="container"></div>
-        <p class="highcharts-description">
-            Este gráfico muestra 2 datos porcentuales sobre la poblacion de cada pais.
+        <p class="highcharts-description" style="text-align: center; color:001C3C; font-size: 25px;">
+            Este gráfico muestra 2 datos porcentuales sobre la poblacion de cada pais junto a la media de edad de hombres al casarse.
         </p>
     </figure>
 </main>

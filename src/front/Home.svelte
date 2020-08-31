@@ -11,10 +11,13 @@
 	<div class="div-home" style="text-align:center;" >
 		<button type="button"   class="btn"  onclick="window.location.href='#/Integrations'">Integraciones</button>
 	</div>
+	<div class="div-home" style="text-align:center;" >
+		<button type="button"   class="btn"  onclick="window.location.href='#/sobremi'">Sobre mi</button>
+	</div>
 </main>
 <style>
 	.btn{
-		margin-top: 15px;
+		margin-top: 23px;
 		margin-left: auto;
   		margin-right: auto;
 		color: #001C3C;
@@ -25,7 +28,7 @@
 		padding: 6px;
 		font-weight: 600;
 		font-size: 30px;
-		margin-bottom:21px;
+		margin-bottom:25px;
 	}
 	.btn:hover {
 

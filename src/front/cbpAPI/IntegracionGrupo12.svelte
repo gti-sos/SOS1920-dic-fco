@@ -92,8 +92,8 @@
     <Button color="info" on:click="{pop}">Atrás</Button>
     <figure class="highcharts-figure">
         <div id="container"></div>
-        <p class="highcharts-description">
-            Este gráfico muestra 2 datos porcentuales sobre la poblacion de cada pais.
+        <p class="highcharts-description" style="text-align: center; color:001C3C; font-size: 25px;">
+            Este gráfico muestra los años para duplicar la población de cada país junto a los abandonos escolares que se producen al año.
         </p>
     </figure>
 </main>

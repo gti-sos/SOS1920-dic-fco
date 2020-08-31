@@ -134,9 +134,6 @@
     <Button color="info" on:click="{pop}">Atrás</Button>
     <figure class="highcharts-figure">
         <div id="container"></div>
-        <p class="highcharts-description">
-            Este gráfico muestra 2 datos porcentuales sobre la poblacion de cada pais.
-        </p>
     </figure>
 </main>
 

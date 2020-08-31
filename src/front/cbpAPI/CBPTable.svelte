@@ -36,6 +36,8 @@
 	let currentPage = 1;
 	let moreData = true;
 
+	let pageButton = true;
+
 	onMount(getCBP);
 	onMount(getCountryYears);
 
@@ -104,7 +106,11 @@
 			}
 		}
 		else {
-			errorResponse(res)
+			if (res.status==404) {
+				alert("No hay datos guardados")
+			} else{
+				errorResponse(res)
+			}
 		}
 	}
 
@@ -167,140 +173,124 @@
 
 
 	async function search(country, year) {
-		let offset = 0;
 		console.log("Searching data: " + country + " and " + year);
 		var url = "/api/v1/cbp";
 
 		if (country != "-" && year != "-") {
-			url = url + "?country=" + country + "&year=" + year+"&";
+			url = url + "?country=" + country + "&year=" + year + "&";
 		} else if (country != "-" && year == "-") {
-			url = url + "?country=" + country+"&";
+			url = url + "?country=" + country + "&";
 		} else if (country == "-" && year != "-") {
-			url = url + "?year=" + year+"&";
-		}else if (country == "-" && year == "-") {
-			url = url+"?";
+			url = url + "?year=" + year + "&";
+		} else if (country == "-" && year == "-") {
+			url = url + "?";
 		}
-		const res = await fetch(url+"offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages);
+		const res = await fetch(url);
 
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
 			cbp = json;
+			pageButton=false;
 			console.log("Received " + cbp.length + " cbp.");
 
-			if (country != "-" && year != "-"&&cbp.length>0) {
-					responseAlert("Busqueda de " + country + " en el año " + year + " realizada correctamente")
-				}else if (country != "-" && year != "-"&&cbp.length==0) {
-					responseError("Dato no extiste")
-				}else if (country != "-" && year == "-") {
-					responseAlert("Busqueda de " + country + " realizada correctamente")
-				} else if (country == "-" && year == "-") {
-					responseAlert("Busqueda de todos los paises realizada correctamente")
-				} else if (country == "-" && year != "-") {
-					responseAlert("Busqueda en el año " + year + " realizada correctamente")
-				}
-			else if (cbp.length != numberElementsPages) {
-				moreData = false
-			} else {
-				const next = await fetch(url+"offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
-				console.log("La variable NEXT tiene el estado: " + next.status)
-				const jsonNext = await next.json();
-
-
-
-				if (jsonNext.length == 0 || next.status == 404) {
-					moreData = false;
-				}
-				else {
-					moreData = true;
-				}
+			if (country != "-" && year != "-" && cbp.length > 0) {
+				responseAlert("Busqueda de " + country + " en el año " + year + " realizada correctamente")
+			} else if (country != "-" && year != "-" && cbp.length == 0) {
+				responseError("Dato no extiste")
+			} else if (country != "-" && year == "-") {
+				responseAlert("Busqueda de " + country + " realizada correctamente")
+			} else if (country == "-" && year == "-") {
+				responseAlert("Busqueda de todos los paises realizada correctamente")
+			} else if (country == "-" && year != "-") {
+				responseAlert("Busqueda en el año " + year + " realizada correctamente")
+			}
+			else {
+				errorResponse(res,country,year)
 			}
 		}
-		else {
-			errorResponse(res)
+	}
+
+
+		function addOffset(increment) {
+			offset += increment;
+			currentPage += increment;
+			getCBP();
 		}
-	}
-
-
-	function addOffset(increment) {
-		offset += increment;
-		currentPage += increment;
-		getCBP();
-	}
 
 
 
-	function responseAlert(msg) {
-		clearAlert();
-		var alert_element = document.getElementById("div_alert");
-		alert_element.style = "position: fixed; top: 0px; top: 1%; width: 90%;";
-		alert_element.className = "alert alert-dismissible in alert-success";
-		alert_element.innerHTML = "<strong>¡Exito!</strong> " + msg;
-
-		setTimeout(() => {
+		function responseAlert(msg) {
 			clearAlert();
-		}, 3000);
-	}
-	function responseError(msg) {
-		clearAlert();
-		var alert_element = document.getElementById("div_alert");
-		alert_element.style = "position: fixed;color:black; background-color:#F08080;border-color:red; top: 0px; top: 1%; width: 90%;";
-		alert_element.className = "alert alert-dismissible in alert-success";
-		alert_element.innerHTML = "<strong>¡Error!</strong> " + msg;
+			var alert_element = document.getElementById("div_alert");
+			alert_element.style = "position: fixed; top: 0px; top: 1%; width: 90%;";
+			alert_element.className = "alert alert-dismissible in alert-success";
+			alert_element.innerHTML = "<strong>¡Exito!</strong> " + msg;
 
-		setTimeout(() => {
+			setTimeout(() => {
+				clearAlert();
+			}, 3000);
+		}
+		function responseError(msg) {
 			clearAlert();
-		}, 3000);
-	}
+			var alert_element = document.getElementById("div_alert");
+			alert_element.style = "position: fixed;color:black; background-color:#F08080;border-color:red; top: 0px; top: 1%; width: 90%;";
+			alert_element.className = "alert alert-dismissible in alert-success";
+			alert_element.innerHTML = "<strong>¡Error!</strong> " + msg;
 
-	function clearAlert() {
-		var alert_element = document.getElementById("div_alert");
-		alert_element.style = "display: none; ";
-		alert_element.className = "alert alert-dismissible in";
-		alert_element.innerHTML = "";
-	}
+			setTimeout(() => {
+				clearAlert();
+			}, 3000);
+		}
 
-	function errorResponse(res, msg) {
-		var status = res.status
-		switch (status) {
-			case 400:
-				responseError("Codigo de error: " + status + '\n' + "Los datos introduccidos no son validos");
-				break;
-			case 401:
-				responseError("Codigo de error: " + status + '\n' + "No tiene permisos para realizar esta accion");
-				break;
-			case 404:
-				responseError("Codigo de error: " + status + '\n' + "Página no encontrada");
-				break;
-			case 405:
-				responseError("Codigo de error: " + status + '\n' + "Metodo no permitido");
-				break;
-			case 409:
-				responseError("Codigo de error: " + status + '\n' + "Conclifto con la operacion");
-				break;
-			case 408:
-				responseError("Codigo de error: " + status + '\n' + "Los datos tienen que estar entre 0 y 100");
-				break;
-			case 410:
-				responseError("Codigo de error: " + status + '\n' + "Los datos de ese pais en ese año ya están registrados");
-				break;
+		function clearAlert() {
+			var alert_element = document.getElementById("div_alert");
+			alert_element.style = "display: none; ";
+			alert_element.className = "alert alert-dismissible in";
+			alert_element.innerHTML = "";
+		}
 
-			default:
-				if (status != 400 && status != 401 && status != 404 && status != 405 && status != 409 && status != 200 && status != 2001) {
-					alert("Codigo de error: " + status + '\n' + "Error de desconocido por el sistema")
+		function errorResponse(res, msg) {
+			var status = res.status
+			switch (status) {
+				case 400:
+					responseError("Codigo de error: " + status + '\n' + "Los datos introduccidos no son validos");
+					break;
+				case 401:
+					responseError("Codigo de error: " + status + '\n' + "No tiene permisos para realizar esta accion");
+					break;
+				case 404:
+					responseError("Codigo de error: " + status + '\n' + "Página no encontrada");
+					break;
+				case 405:
+					responseError("Codigo de error: " + status + '\n' + "Metodo no permitido");
+					break;
+				case 409:
+					responseError("Codigo de error: " + status + '\n' + "Conclifto con la operacion");
+					break;
+				case 408:
+					responseError("Codigo de error: " + status + '\n' + "Los datos tienen que estar entre 0 y 100");
+					break;
+				case 410:
+					responseError("Codigo de error: " + status + '\n' + "Los datos de ese pais en ese año ya están registrados");
 					break;
 
-				} else {
-					break;
-				}
+				default:
+					if (status != 400 && status != 401 && status != 404 && status != 405 && status != 409 && status != 200 && status != 2001) {
+						alert("Codigo de error: " + status + '\n' + "Error de desconocido por el sistema")
+						break;
 
+					} else {
+						break;
+					}
+
+			}
 		}
-	}
 
 
 </script>
 
-<main>
+<main style="background-color: #001C3C;">
 	<div role="alert" id="div_alert" style="display: none;">
 	</div>
 	{#await cbp}
@@ -308,8 +298,8 @@
 	{:then cbp}
 	
 	<Button outline  color="primary" on:click="{ReloadTable}"> <i class="fas fa-search"></i> Recargar datos originales </Button>
-		<FormGroup> 
-			<Label for="selectCountry"> Búsqueda por país </Label>
+		<FormGroup > 
+			<Label for="selectCountry" style="color:#E8E8E8"> Búsqueda por país </Label>
 			<Input type="select" name="selectCountry" id="selectCountry" bind:value="{currentCountry}">
 				{#each countries as country}
 				<option>{country}</option>
@@ -319,7 +309,7 @@
 		</FormGroup>
 				
 		<FormGroup>
-			<Label for="selectYear"> Año </Label>
+			<Label for="selectYear"style="color:#E8E8E8"> Año </Label>
 			<Input type="select"  name="selectYear" id="selectYear" bind:value="{currentYear}">
 				{#each years as year}
 				<option>{year}</option>
@@ -368,7 +358,7 @@
 		</Table>
 		{/await}
 	
- 
+	{#if pageButton == true}
 	<Pagination style="float:right;" ariaLabel="Cambiar de página">
 
 
@@ -396,7 +386,7 @@
 		</PaginationItem>
 
 	</Pagination>
-	
+	{/if}
 
 	<Button outline  color="secondary" on:click="{pop}"> <i class="fas fa-arrow-circle-left"></i> Atrás </Button>
 	<Button outline  on:click={deleteCBPcountries}   color="danger"> <i class="fa fa-trash" aria-hidden="true"></i> Borrar todo </Button>
@@ -404,3 +394,12 @@
 
 
 </main>
+<style>
+
+th{
+	color:#E8E8E8
+}
+td {
+	color:#E8E8E8
+}
+</style>
