@@ -33,10 +33,15 @@
 
 	let numberElementsPages = 2;
 	let offset = 0;
+	let offset2=0;
 	let currentPage = 1;
+	let currentPage2 = 1;
 	let moreData = true;
+	let moreData2 = true;
 
 	let pageButton = true;
+	let pageButton2 = false;
+	
 
 	onMount(getCBP);
 	onMount(getCountryYears);
@@ -88,7 +93,7 @@
 			console.log("Received " + cbp.length + " cbp.");
 
 			if (cbp.length != numberElementsPages) {
-				moreData = false
+				moreData = false;
 			} else {
 
 				const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
@@ -172,10 +177,11 @@
 	}
 
 
-	async function search(country, year) {
+	async function search(country, year,currentP,off) {
+		currentPage2=currentP;
+		offset2=off;
 		console.log("Searching data: " + country + " and " + year);
 		var url = "/api/v1/cbp";
-
 		if (country != "-" && year != "-") {
 			url = url + "?country=" + country + "&year=" + year;
 		} else if (country != "-" && year == "-") {
@@ -183,18 +189,21 @@
 		} else if (country == "-" && year != "-") {
 			url = url + "?year=" + year;
 		} else if (country == "-" && year == "-") {
-			url = url;
+			url = url+"?";
 		}
-		const res = await fetch(url);
+		const res = await fetch(url+"&offset=" + numberElementsPages * offset2 + "&limit=" + numberElementsPages);
 
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
 			cbp = json;
 			pageButton=false;
+			pageButton2=true;
+			moreData2 = true;
 			console.log("Received " + cbp.length + " cbp.");
-
-			if (country != "-" && year != "-" && cbp.length > 0) {
+			if (cbp.length != numberElementsPages) {
+				moreData2 = false;
+			}if (country != "-" && year != "-" && cbp.length > 0) {
 				responseAlert("Busqueda de " + country + " en el año " + year + " realizada correctamente")
 			} else if (country != "-" && year != "-" && cbp.length == 0) {
 				responseError("Dato no extiste")
@@ -204,18 +213,36 @@
 				responseAlert("Busqueda de todos los paises realizada correctamente")
 			} else if (country == "-" && year != "-") {
 				responseAlert("Busqueda en el año " + year + " realizada correctamente")
+			} else {
+
+				const next = await fetch(url+"&offset=" + numberElementsPages * (offset2 + 1) + "&limit=" + numberElementsPages);
+				console.log("La variable NEXT tiene el estado: " + next.status)
+				const jsonNext = await next.json();
+
+				if (jsonNext.length == 0 || next.status == 404) {
+					moreData2 = false;
+				}
+				else {
+					moreData2 = true;
+				}
 			}
-			else {
+		}else {
 				errorResponse(res,country,year)
 			}
 		}
-	}
+	
 
 
 		function addOffset(increment) {
 			offset += increment;
 			currentPage += increment;
 			getCBP();
+		}
+
+		function addOffset2(increment,currentC,CurrentD) {
+			offset2 += increment;
+			currentPage2 += increment;
+			search(currentC,CurrentD,currentPage2,offset2);
 		}
 
 
@@ -318,7 +345,7 @@
 			</Input>
 		</FormGroup>
 
-		<Button outline color="secondary" on:click="{search(currentCountry, currentYear)}" class="button-search" > <i class="fas fa-search"></i> Buscar </Button>
+		<Button outline color="secondary" on:click="{search(currentCountry, currentYear,1,0)}" class="button-search" ><i class="fas fa-search"></i> Buscar </Button>
 		
 
 		<Table bordered>
@@ -383,6 +410,36 @@
 
 		<PaginationItem class="{moreData ? '' : 'disabled'}">
 		  <PaginationLink next href="#/cbpAPI" on:click="{() => addOffset(1)}"/>
+		</PaginationItem>
+
+	</Pagination>
+	{/if}
+
+	{#if pageButton2 == true}
+	<Pagination style="float:right;" ariaLabel="Cambiar de página">
+
+
+		<PaginationItem class="{currentPage2 === 1 ? 'disabled' : ''}">
+		  <PaginationLink previous href="#/cbpAPI" on:click="{() => addOffset2(-1,currentCountry, currentYear)}" />
+		</PaginationItem>
+		
+		{#if currentPage2 != 1}
+		<PaginationItem>
+			<PaginationLink href="#/cbpAPI" on:click="{() => addOffset2(-1,currentCountry, currentYear)}" >{currentPage2 - 1}</PaginationLink>
+		</PaginationItem>
+		{/if}
+		<PaginationItem active>
+			<PaginationLink href="#/cbpAPI" >{currentPage2}</PaginationLink>
+		</PaginationItem>
+
+		{#if moreData2}
+		<PaginationItem >
+			<PaginationLink href="#/cbpAPI" on:click="{() => addOffset2(1,currentCountry, currentYear)}">{currentPage2 + 1}</PaginationLink>
+		</PaginationItem>
+		{/if}
+
+		<PaginationItem class="{moreData2 ? '' : 'disabled'}">
+		  <PaginationLink next href="#/cbpAPI" on:click="{() => addOffset2(1,currentCountry, currentYear)}"/>
 		</PaginationItem>
 
 	</Pagination>
