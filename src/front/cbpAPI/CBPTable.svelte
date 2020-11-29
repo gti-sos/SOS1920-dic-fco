@@ -177,13 +177,13 @@
 		var url = "/api/v1/cbp";
 
 		if (country != "-" && year != "-") {
-			url = url + "?country=" + country + "&year=" + year + "&";
+			url = url + "?country=" + country + "&year=" + year;
 		} else if (country != "-" && year == "-") {
-			url = url + "?country=" + country + "&";
+			url = url + "?country=" + country;
 		} else if (country == "-" && year != "-") {
-			url = url + "?year=" + year + "&";
+			url = url + "?year=" + year;
 		} else if (country == "-" && year == "-") {
-			url = url + "?";
+			url = url;
 		}
 		const res = await fetch(url);
 
