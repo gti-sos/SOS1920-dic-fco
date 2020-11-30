@@ -18,6 +18,7 @@
 	import { Pagination, PaginationItem, PaginationLink } from 'sveltestrap';
 
 	let cbp = [];
+	let limitcbp=[];
 	let newCBP = {
 		country: "",
 		year: (""),
@@ -31,7 +32,7 @@
 	let currentCountry = "-";
 	let currentYear = "-";
 
-	let numberElementsPages = 2;
+	let numberElementsPages = 0;
 	let offset = 0;
 	let offset2=0;
 	let currentPage = 1;
@@ -85,15 +86,16 @@
 
 		console.log("Fetching cbp...");
 		const res = await fetch("/api/v1/cbp?offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages);
-
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
 			cbp = json;
+			limitcbp=json;
 			console.log("Received " + cbp.length + " cbp.");
 
 			if (cbp.length != numberElementsPages) {
 				moreData = false;
+				numberElementsPages=limitcbp.length;
 			} else {
 
 				const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
@@ -346,6 +348,8 @@
 		</FormGroup>
 
 		<Button outline color="secondary" on:click="{search(currentCountry, currentYear,1,0)}" class="button-search" ><i class="fas fa-search"></i> Buscar </Button>
+		<h6 style=" color:white; margin-right:20 px;">N.º elementos por página: <input style=" width: 70px; margin-right:10 px;" type="number" min="1"	max="{limitcbp.length}" placeholder="n.º elementos por página" bind:value="{numberElementsPages}" ></h6>
+		
 		
 
 		<Table bordered>
@@ -384,7 +388,6 @@
 			</tbody>
 		</Table>
 		{/await}
-	
 	{#if pageButton == true}
 	<Pagination style="float:right;" ariaLabel="Cambiar de página">
 
@@ -448,7 +451,6 @@
 	<Button outline  color="secondary" on:click="{pop}"> <i class="fas fa-arrow-circle-left"></i> Atrás </Button>
 	<Button outline  on:click={deleteCBPcountries}   color="danger"> <i class="fa fa-trash" aria-hidden="true"></i> Borrar todo </Button>
 	
-
 
 </main>
 <style>
