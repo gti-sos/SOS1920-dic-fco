@@ -106,14 +106,11 @@
 	}
 
     
-    function errorResponse(res, msg) {
+    function errorResponse(res) {
 	var status = res.status
 	switch (status) {
 		case 400:
 			responseError("Codigo de error: " + status + '\n'+ "Los datos introduccidos no son validos");
-			break;
-		case 401:
-			responseError("Codigo de error: " + status + '\n'+ "No tiene permisos para realizar esta accion");
 			break;
 		case 404:
 			responseError("Codigo de error: " + status + '\n'+ "Página no encontrada");
@@ -121,15 +118,12 @@
 		case 405:
 			responseError("Codigo de error: " + status + '\n'+ "Metodo no permitido");
 			break;
-		case 409:
-			responseError("Codigo de error: " + status + '\n'+ "Conclifto con la operacion");
-			break;
 		case 410:
 			responseError("Codigo de error: " + status + '\n'+ "Los datos de ese pais en ese año ya están registrados");
 			break;
 
 		default:
-			if (status!=400 && status!=401 && status!=404 && status!=405  && status!=409  && status!=200  && status!=2001) {
+			if (status!=400 && status!=404 && status!=405  && status!=410) {
 				alert("Codigo de error: "+ status +'\n'+ "Error de desconocido por el sistema")
 				break;
 

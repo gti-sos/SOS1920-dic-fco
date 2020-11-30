@@ -189,11 +189,14 @@ module.exports = function (app) {
 
 
 		db.find(par).skip(offset).limit(limit).exec((err, cbp) => {
+			if(cbp.length==0){
+				res.sendStatus(404, "NOT FOUND");
+			}else{
 			deleteIDs(cbp);
 			res.send(JSON.stringify(cbp, null, 2));
 
 			console.log("Data sent: " + JSON.stringify(cbp, null, 2));
-		});
+		}});
 	});
 	// GET yyyy/XXX
 
@@ -226,7 +229,7 @@ module.exports = function (app) {
 	// POST
 	app.post(BASE_API_URL + "/cbp", (req, res) => {
 		var newcbp = req.body;
-		if ((newcbp == "") || (newcbp.country == null) || (newcbp.country == "") || (newcbp.year == null) || (newcbp.year == "") || (newcbp.yfed == null)) {
+		if ((newcbp == "") || (newcbp.country == null) || (newcbp.country == "") || (newcbp.year == null) || (newcbp.year == "") || (newcbp.yfed < 0)) {
 			res.sendStatus(400, "BAD REQUEST");
 		} else {
 			db.find({ country: newcbp.country, year: Number(newcbp.year) }, (err, cbp) => {
