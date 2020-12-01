@@ -162,6 +162,7 @@ module.exports = function (app) {
 	});
 
 	// GET 
+	
 	app.get(BASE_API_URL + "/cbp", (req, res) => {
 		console.log("New GET cbp");
 
@@ -200,14 +201,14 @@ module.exports = function (app) {
 	});
 	// GET yyyy/XXX
 
-	app.get(BASE_API_URL + "/cbp/:country", (req, res) => {
+	/*app.get(BASE_API_URL + "/cbp/:country", (req, res) => {
 		var country1 = req.params.country;
 		db.find({ country: country1 }, (err, cbp) => {
 			deleteIDs(cbp);
 			res.send(JSON.stringify(cbp, null, 2));
 			console.log("Data sent:" + JSON.stringify(cbp, null, 2));
 		});
-	});
+	});*/
 
 	// GET yyyy/XXX/zzz
 	app.get(BASE_API_URL + "/cbp/:country/:year", (req, res) => {
@@ -224,7 +225,6 @@ module.exports = function (app) {
 			}
 
 		});
-
 	});
 	// POST
 	app.post(BASE_API_URL + "/cbp", (req, res) => {
