@@ -1,7 +1,7 @@
 {
-	"id": "754a4822-df2c-4937-bd12-fb0accfb792c",
+	"id": "649b8bb7-0169-45f1-98ca-b3b00d750e13",
 	"name": "SOS1920-dic-fco-cbp",
-	"timestamp": "2020-08-30T17:00:13.180Z",
+	"timestamp": "2020-12-01T13:13:54.434Z",
 	"collection_id": "c49e2ea8-d2fc-4ccc-b4b6-8173bb282a75",
 	"folder_id": 0,
 	"environment_id": "7419f4c6-df66-4b14-b8d8-982aead51f9d",
@@ -12,7 +12,7 @@
 			"id": "b49e2584-5d5e-4e31-af33-fb27629ce970",
 			"name": "get cbp loadInitialData",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/loadInitialData",
-			"time": 491,
+			"time": 538,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -20,7 +20,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				491
+				538
 			],
 			"allTests": [
 				{}
@@ -30,7 +30,7 @@
 			"id": "64310c0a-0ddb-4a58-86a2-7b90837e3401",
 			"name": "get cbp",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 108,
+			"time": 138,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -38,7 +38,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				108
+				138
 			],
 			"allTests": [
 				{}
@@ -48,7 +48,7 @@
 			"id": "ab2bbcfd-1893-46ef-a6d0-b0aef498354d",
 			"name": "get cbp/country",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Germany",
-			"time": 110,
+			"time": 140,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -56,7 +56,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				110
+				140
 			],
 			"allTests": [
 				{}
@@ -66,7 +66,7 @@
 			"id": "0ea48f00-15fb-40a9-a098-f9e35242a6c9",
 			"name": "get cbp/country/year",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Germany/2020",
-			"time": 108,
+			"time": 112,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -74,7 +74,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				108
+				112
 			],
 			"allTests": [
 				{}
@@ -84,7 +84,7 @@
 			"id": "8446f6fe-4f23-45a7-83cc-6791502eb3d5",
 			"name": "post cbp",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 124,
+			"time": 244,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -99,7 +99,7 @@
 				}
 			},
 			"times": [
-				124
+				244
 			],
 			"allTests": [
 				{
@@ -111,7 +111,7 @@
 			"id": "5e754693-c9ce-4f8f-9079-1af9a5e990a6",
 			"name": "post cbp fallo",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 106,
+			"time": 113,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -126,7 +126,7 @@
 				}
 			},
 			"times": [
-				106
+				113
 			],
 			"allTests": [
 				{
@@ -138,7 +138,7 @@
 			"id": "93771d9a-2fc1-4ae8-bca8-13e234e48e1b",
 			"name": "post cbp/country",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain",
-			"time": 114,
+			"time": 129,
 			"responseCode": {
 				"code": 405,
 				"name": "Method Not Allowed"
@@ -153,7 +153,7 @@
 				}
 			},
 			"times": [
-				114
+				129
 			],
 			"allTests": [
 				{
@@ -165,7 +165,7 @@
 			"id": "6c44526a-dfd2-4ded-8497-28ad54096219",
 			"name": "post cbp/country/year",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain/2020",
-			"time": 109,
+			"time": 119,
 			"responseCode": {
 				"code": 405,
 				"name": "Method Not Allowed"
@@ -180,7 +180,7 @@
 				}
 			},
 			"times": [
-				109
+				119
 			],
 			"allTests": [
 				{
@@ -191,8 +191,8 @@
 		{
 			"id": "acfaa625-306e-4b22-b6c8-575266ef1cd3",
 			"name": "put cbp",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
-			"time": 109,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
+			"time": 221,
 			"responseCode": {
 				"code": 405,
 				"name": "Method Not Allowed"
@@ -207,7 +207,7 @@
 				}
 			},
 			"times": [
-				109
+				221
 			],
 			"allTests": [
 				{
@@ -219,7 +219,7 @@
 			"id": "6775ab59-6589-4564-953b-0313c59dfb69",
 			"name": "put cbp/country/year",
 			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/China/2020",
-			"time": 109,
+			"time": 132,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -234,7 +234,7 @@
 				}
 			},
 			"times": [
-				109
+				132
 			],
 			"allTests": [
 				{
@@ -245,8 +245,8 @@
 		{
 			"id": "2940b46c-d2aa-492f-ab43-a96f84762f88",
 			"name": "get busqueda 1",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?country=Spain&year=2020",
-			"time": 112,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?country=Spain&year=2020",
+			"time": 127,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -271,7 +271,7 @@
 				}
 			},
 			"times": [
-				112
+				127
 			],
 			"allTests": [
 				{
@@ -284,8 +284,8 @@
 		{
 			"id": "11f11483-c4a6-46c0-869b-10fd83d20855",
 			"name": "get busqueda 2",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?year=2020",
-			"time": 112,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?year=2020",
+			"time": 115,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -305,7 +305,7 @@
 				}
 			},
 			"times": [
-				112
+				115
 			],
 			"allTests": [
 				{
@@ -317,8 +317,8 @@
 		{
 			"id": "d1c42f91-bcc6-4b86-9925-25187e4094a5",
 			"name": "get busqueda 3",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?pwp=0.61%0A&aapc=0.47",
-			"time": 110,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?pwp=0.61%0A&aapc=0.47",
+			"time": 145,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -338,7 +338,7 @@
 				}
 			},
 			"times": [
-				110
+				145
 			],
 			"allTests": [
 				{
@@ -350,8 +350,8 @@
 		{
 			"id": "6d9e48ea-55d7-4b33-8581-e82109d3aa60",
 			"name": "get paginacion 1",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?offset=1&limit=2",
-			"time": 109,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?offset=1&limit=2",
+			"time": 113,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -366,7 +366,7 @@
 				}
 			},
 			"times": [
-				109
+				113
 			],
 			"allTests": [
 				{
@@ -377,8 +377,8 @@
 		{
 			"id": "09599119-e11b-401c-b314-a51dcf3e889e",
 			"name": "get paginacion 2",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp?offset=4&limit=2",
-			"time": 112,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?offset=4&limit=2",
+			"time": 132,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -398,7 +398,7 @@
 				}
 			},
 			"times": [
-				112
+				132
 			],
 			"allTests": [
 				{
@@ -410,8 +410,8 @@
 		{
 			"id": "bd19525b-3372-41b6-8783-67f04493fe78",
 			"name": "delete ppa/country",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Spain",
-			"time": 115,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain",
+			"time": 185,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -426,7 +426,7 @@
 				}
 			},
 			"times": [
-				115
+				185
 			],
 			"allTests": [
 				{
@@ -437,8 +437,8 @@
 		{
 			"id": "a4ef1fc6-d345-4714-a59d-021fe872bf08",
 			"name": "delete ppa/country/year",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/India/2020",
-			"time": 111,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/India/2020",
+			"time": 122,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -453,7 +453,7 @@
 				}
 			},
 			"times": [
-				111
+				122
 			],
 			"allTests": [
 				{
@@ -464,8 +464,8 @@
 		{
 			"id": "3cd97958-7cab-4a78-96a1-5df755a4bb9c",
 			"name": "delete ppa",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
-			"time": 111,
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
+			"time": 161,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -480,7 +480,7 @@
 				}
 			},
 			"times": [
-				111
+				161
 			],
 			"allTests": [
 				{
@@ -490,7 +490,7 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 2380,
+	"totalTime": 2986,
 	"collection": {
 		"requests": [
 			{
