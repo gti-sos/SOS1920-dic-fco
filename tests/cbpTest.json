@@ -1,6 +1,6 @@
 {
 	"id": "754a4822-df2c-4937-bd12-fb0accfb792c",
-	"name": "SOS1920-sep-fco-cbp",
+	"name": "SOS1920-dic-fco-cbp",
 	"timestamp": "2020-08-30T17:00:13.180Z",
 	"collection_id": "c49e2ea8-d2fc-4ccc-b4b6-8173bb282a75",
 	"folder_id": 0,
@@ -11,7 +11,7 @@
 		{
 			"id": "b49e2584-5d5e-4e31-af33-fb27629ce970",
 			"name": "get cbp loadInitialData",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/loadInitialData",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/loadInitialData",
 			"time": 491,
 			"responseCode": {
 				"code": 200,
@@ -29,7 +29,7 @@
 		{
 			"id": "64310c0a-0ddb-4a58-86a2-7b90837e3401",
 			"name": "get cbp",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
 			"time": 108,
 			"responseCode": {
 				"code": 200,
@@ -47,7 +47,7 @@
 		{
 			"id": "ab2bbcfd-1893-46ef-a6d0-b0aef498354d",
 			"name": "get cbp/country",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Germany",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Germany",
 			"time": 110,
 			"responseCode": {
 				"code": 200,
@@ -65,7 +65,7 @@
 		{
 			"id": "0ea48f00-15fb-40a9-a098-f9e35242a6c9",
 			"name": "get cbp/country/year",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Germany/2020",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Germany/2020",
 			"time": 108,
 			"responseCode": {
 				"code": 200,
@@ -83,7 +83,7 @@
 		{
 			"id": "8446f6fe-4f23-45a7-83cc-6791502eb3d5",
 			"name": "post cbp",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
 			"time": 124,
 			"responseCode": {
 				"code": 201,
@@ -110,7 +110,7 @@
 		{
 			"id": "5e754693-c9ce-4f8f-9079-1af9a5e990a6",
 			"name": "post cbp fallo",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
 			"time": 106,
 			"responseCode": {
 				"code": 400,
@@ -137,7 +137,7 @@
 		{
 			"id": "93771d9a-2fc1-4ae8-bca8-13e234e48e1b",
 			"name": "post cbp/country",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Spain",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain",
 			"time": 114,
 			"responseCode": {
 				"code": 405,
@@ -164,7 +164,7 @@
 		{
 			"id": "6c44526a-dfd2-4ded-8497-28ad54096219",
 			"name": "post cbp/country/year",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/Spain/2020",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain/2020",
 			"time": 109,
 			"responseCode": {
 				"code": 405,
@@ -218,7 +218,7 @@
 		{
 			"id": "6775ab59-6589-4564-953b-0313c59dfb69",
 			"name": "put cbp/country/year",
-			"url": "https://sos1920-sep-fco.herokuapp.com/api/v1/cbp/China/2020",
+			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/China/2020",
 			"time": 109,
 			"responseCode": {
 				"code": 200,

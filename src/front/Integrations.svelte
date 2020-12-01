@@ -7,7 +7,7 @@
 
 
 <main>
-	<h2>Integraciones del grupo sos1920-sep-fco</h2>
+	<h2>Integraciones del grupo sos1920-dic-fco</h2>
 	<h4>Integraciones de Paises por población</h4>
 </main>
 <body>

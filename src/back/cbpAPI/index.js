@@ -85,7 +85,7 @@ module.exports = function (app) {
 	////////////////////////////////////////
 
 	//RLN
-	const URL_1 = 'https://sos1920-sep-rnl.herokuapp.com';
+	const URL_1 = 'https://sos1920-dic-rnl.herokuapp.com';
 	app.use("/api/v1/mercados", function (req, res) {
 		console.log("GET API MERCADOS");
 		var url = URL_1 + req.baseUrl + req.url;
