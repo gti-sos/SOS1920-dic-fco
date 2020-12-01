@@ -289,7 +289,7 @@
 				case 405:
 					responseError("Codigo de error: " + status + '\n' + "Metodo no permitido");
 					break;
-				case 410:
+				case 420:
 					responseError("Codigo de error: " + status + '\n' + "Los datos de ese pais en ese año ya están registrados");
 					break;
 
@@ -336,7 +336,7 @@
 			</Input>
 		</FormGroup>
 
-		<Button outline color="secondary" on:click="{search(currentCountry, currentYear,1,0)}" class="button-search" ><i class="fas fa-search"></i> Buscar </Button>
+		<Button style="margin-left:5px;"outline color="secondary" on:click="{search(currentCountry, currentYear,1,0)}" class="button-search" ><i class="fas fa-search"></i> Buscar </Button>
 		<h6 style=" color:white; margin-right:20 px;">N.º elementos por página: <input style=" width: 70px; margin-right:10 px;" type="number" min="1"	max="{limitcbp.length}" placeholder="n.º elementos por página" bind:value="{numberElementsPages}" ></h6>
 		
 		
