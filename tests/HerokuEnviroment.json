@@ -1,0 +1,14 @@
+{
+	"id": "7419f4c6-df66-4b14-b8d8-982aead51f9d",
+	"name": "Heroku dic",
+	"values": [
+		{
+			"key": "BASE_URL",
+			"value": "https://sos1920-dic-fco.herokuapp.com",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-12-02T17:44:09.179Z",
+	"_postman_exported_using": "Postman/7.36.0"
+}

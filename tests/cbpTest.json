@@ -1,570 +1,714 @@
 {
-	"id": "649b8bb7-0169-45f1-98ca-b3b00d750e13",
-	"name": "SOS1920-dic-fco-cbp",
-	"timestamp": "2020-12-01T13:13:54.434Z",
-	"collection_id": "c49e2ea8-d2fc-4ccc-b4b6-8173bb282a75",
-	"folder_id": 0,
-	"environment_id": "7419f4c6-df66-4b14-b8d8-982aead51f9d",
-	"totalPass": 18,
-	"totalFail": 1,
-	"results": [
+	"info": {
+		"_postman_id": "c49e2ea8-d2fc-4ccc-b4b6-8173bb282a75",
+		"name": "SOS1920-dic-fco-cbp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "b49e2584-5d5e-4e31-af33-fb27629ce970",
 			"name": "get cbp loadInitialData",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/loadInitialData",
-			"time": 538,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/loadInitialData",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"loadInitialData"
+					]
+				}
 			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				538
-			],
-			"allTests": [
-				{}
-			]
+			"response": []
 		},
 		{
-			"id": "64310c0a-0ddb-4a58-86a2-7b90837e3401",
 			"name": "get cbp",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 138,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					]
+				}
 			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				138
-			],
-			"allTests": [
-				{}
-			]
+			"response": []
 		},
 		{
-			"id": "ab2bbcfd-1893-46ef-a6d0-b0aef498354d",
 			"name": "get cbp/country",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Germany",
-			"time": 140,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/Germany",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"Germany"
+					]
+				}
 			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				140
-			],
-			"allTests": [
-				{}
-			]
+			"response": []
 		},
 		{
-			"id": "0ea48f00-15fb-40a9-a098-f9e35242a6c9",
 			"name": "get cbp/country/year",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Germany/2020",
-			"time": 112,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/Germany/2020",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"Germany",
+						"2020"
+					]
+				}
 			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				112
-			],
-			"allTests": [
-				{}
-			]
+			"response": []
 		},
 		{
-			"id": "8446f6fe-4f23-45a7-83cc-6791502eb3d5",
 			"name": "post cbp",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 244,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"Status code is 201": true
-			},
-			"testPassFailCounts": {
-				"Status code is 201": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				244
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 201": true
+					"listen": "test",
+					"script": {
+						"id": "30d147e7-6936-4135-8480-ce2ff6d36a3d",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"Germany\",\r\n\"year\": 20201,\r\n\"yfed\": 169,\r\n\"pwp\": 1.07,\r\n\"aapc\": 0.41\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "5e754693-c9ce-4f8f-9079-1af9a5e990a6",
 			"name": "post cbp fallo",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 113,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status code is 201": false
-			},
-			"testPassFailCounts": {
-				"Status code is 201": {
-					"pass": 0,
-					"fail": 1
-				}
-			},
-			"times": [
-				113
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 201": false
+					"listen": "test",
+					"script": {
+						"id": "1e6bfa61-0921-4fb6-8e4f-0938a5db6f5d",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"Germany\",\r\n\"year\": 2020,\r\n\"yfed\": 169,\r\n\"pwp\": 1.07,\r\n\"aapc\": 0.41\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "93771d9a-2fc1-4ae8-bca8-13e234e48e1b",
 			"name": "post cbp/country",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain",
-			"time": 129,
-			"responseCode": {
-				"code": 405,
-				"name": "Method Not Allowed"
-			},
-			"tests": {
-				"Status code is 405": true
-			},
-			"testPassFailCounts": {
-				"Status code is 405": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				129
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 405": true
+					"listen": "test",
+					"script": {
+						"id": "d5a521f6-8157-440e-857a-4a15c64271ca",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"Germany\",\r\n\"year\": 20201,\r\n\"yfed\": 169,\r\n\"pwp\": 1.07,\r\n\"aapc\": 0.41\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/Spain",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"Spain"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "6c44526a-dfd2-4ded-8497-28ad54096219",
 			"name": "post cbp/country/year",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain/2020",
-			"time": 119,
-			"responseCode": {
-				"code": 405,
-				"name": "Method Not Allowed"
-			},
-			"tests": {
-				"Status code is 405": true
-			},
-			"testPassFailCounts": {
-				"Status code is 405": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				119
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 405": true
+					"listen": "test",
+					"script": {
+						"id": "f7502c5b-959c-466a-9160-3a9e0b3e5139",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"Spain\",\r\n\"year\": 2017,\r\n\"aas_gross\": 40451,\r\n\"aas_net\": 31920,\r\n\"ppa_per_capita\": 37998\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/Spain/2020",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"Spain",
+						"2020"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "acfaa625-306e-4b22-b6c8-575266ef1cd3",
 			"name": "put cbp",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 221,
-			"responseCode": {
-				"code": 405,
-				"name": "Method Not Allowed"
-			},
-			"tests": {
-				"Status code is 405": true
-			},
-			"testPassFailCounts": {
-				"Status code is 405": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				221
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 405": true
+					"listen": "test",
+					"script": {
+						"id": "a2926b50-f364-4d3c-9f1b-4bcaca1cc440",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"Chinaaaa\",\r\n\"year\": 2020,\r\n\"yfed\": 144,\r\n\"pwp\": 18.05,\r\n\"aapc\": 0.48\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "6775ab59-6589-4564-953b-0313c59dfb69",
 			"name": "put cbp/country/year",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/China/2020",
-			"time": 132,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				132
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "9c61b6e6-d074-4265-911d-bedd0328e4b2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"China\",\r\n\"year\": 2020,\r\n\"yfed\": 150,\r\n\"pwp\": 99,\r\n\"aapc\": 0.48\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/China/2020",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"China",
+						"2020"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "2940b46c-d2aa-492f-ab43-a96f84762f88",
 			"name": "get busqueda 1",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?country=Spain&year=2020",
-			"time": 127,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Verify year": true,
-				"There is 1 country": true,
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Verify year": {
-					"pass": 1,
-					"fail": 0
-				},
-				"There is 1 country": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				127
-			],
-			"allTests": [
+			"event": [
 				{
-					"Verify year": true,
-					"There is 1 country": true,
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "e07ba567-c0b1-437a-ab51-02f9285f0474",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"var theElement = jsonData[0];\r",
+							"pm.test(\"Verify year\", function() {\r",
+							"    pm.expect(theElement.year).is.to.equal(2020);\r",
+							"});\r",
+							"pm.test(\"There is 1 country\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.lengthOf(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp?country=Spain&year=2020",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Spain"
+						},
+						{
+							"key": "year",
+							"value": "2020"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "11f11483-c4a6-46c0-869b-10fd83d20855",
 			"name": "get busqueda 2",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?year=2020",
-			"time": 115,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Verify year": true,
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Verify year": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				115
-			],
-			"allTests": [
+			"event": [
 				{
-					"Verify year": true,
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "6913af1a-80cc-4e31-ba77-8f124266800f",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"var theElement = jsonData[0];\r",
+							"pm.test(\"Verify year\", function() {\r",
+							"    pm.expect(theElement.year).is.to.equal(2020);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp?year=2020",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2020"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "d1c42f91-bcc6-4b86-9925-25187e4094a5",
 			"name": "get busqueda 3",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?pwp=0.61%0A&aapc=0.47",
-			"time": 145,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"There is 1 country": true,
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"There is 1 country": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				145
-			],
-			"allTests": [
+			"event": [
 				{
-					"There is 1 country": true,
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "0b85de9a-2910-4337-9e85-0b4d7a3457e0",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"There is 1 country\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.lengthOf(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp?pwp=0.61\n&aapc=0.47",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					],
+					"query": [
+						{
+							"key": "pwp",
+							"value": "0.61\n"
+						},
+						{
+							"key": "aapc",
+							"value": "0.47"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "6d9e48ea-55d7-4b33-8581-e82109d3aa60",
 			"name": "get paginacion 1",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?offset=1&limit=2",
-			"time": 113,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				113
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "2159c95d-31c2-4e8a-b721-b557904983fd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp?offset=1&limit=2",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "09599119-e11b-401c-b314-a51dcf3e889e",
 			"name": "get paginacion 2",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp?offset=4&limit=2",
-			"time": 132,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"There is 2 country": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"There is 2 country": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				132
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true,
-					"There is 2 country": true
+					"listen": "test",
+					"script": {
+						"id": "8ede5aeb-045f-4c96-87fc-d5e6780b9c74",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There is 2 country\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.lengthOf(2);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp?offset=4&limit=2",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "4"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "bd19525b-3372-41b6-8783-67f04493fe78",
 			"name": "delete ppa/country",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/Spain",
-			"time": 185,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				185
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "1a252608-8369-4403-a468-166ab48ae577",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/Spain",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"Spain"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "a4ef1fc6-d345-4714-a59d-021fe872bf08",
 			"name": "delete ppa/country/year",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp/India/2020",
-			"time": 122,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				122
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "957fec68-b1d6-4510-bdd8-5528692fec43",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp/India/2020",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp",
+						"India",
+						"2020"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "3cd97958-7cab-4a78-96a1-5df755a4bb9c",
 			"name": "delete ppa",
-			"url": "https://sos1920-dic-fco.herokuapp.com/api/v1/cbp",
-			"time": 161,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				161
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true
+					"listen": "test",
+					"script": {
+						"id": "28a11433-d2de-4004-8cce-b701f070719b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/cbp",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cbp"
+					]
+				}
+			},
+			"response": []
 		}
 	],
-	"count": 1,
-	"totalTime": 2986,
-	"collection": {
-		"requests": [
-			{
-				"id": "b49e2584-5d5e-4e31-af33-fb27629ce970",
-				"method": "GET"
-			},
-			{
-				"id": "64310c0a-0ddb-4a58-86a2-7b90837e3401",
-				"method": "GET"
-			},
-			{
-				"id": "ab2bbcfd-1893-46ef-a6d0-b0aef498354d",
-				"method": "GET"
-			},
-			{
-				"id": "0ea48f00-15fb-40a9-a098-f9e35242a6c9",
-				"method": "GET"
-			},
-			{
-				"id": "8446f6fe-4f23-45a7-83cc-6791502eb3d5",
-				"method": "POST"
-			},
-			{
-				"id": "5e754693-c9ce-4f8f-9079-1af9a5e990a6",
-				"method": "POST"
-			},
-			{
-				"id": "93771d9a-2fc1-4ae8-bca8-13e234e48e1b",
-				"method": "POST"
-			},
-			{
-				"id": "6c44526a-dfd2-4ded-8497-28ad54096219",
-				"method": "POST"
-			},
-			{
-				"id": "acfaa625-306e-4b22-b6c8-575266ef1cd3",
-				"method": "PUT"
-			},
-			{
-				"id": "6775ab59-6589-4564-953b-0313c59dfb69",
-				"method": "PUT"
-			},
-			{
-				"id": "2940b46c-d2aa-492f-ab43-a96f84762f88",
-				"method": "GET"
-			},
-			{
-				"id": "11f11483-c4a6-46c0-869b-10fd83d20855",
-				"method": "GET"
-			},
-			{
-				"id": "d1c42f91-bcc6-4b86-9925-25187e4094a5",
-				"method": "GET"
-			},
-			{
-				"id": "6d9e48ea-55d7-4b33-8581-e82109d3aa60",
-				"method": "GET"
-			},
-			{
-				"id": "09599119-e11b-401c-b314-a51dcf3e889e",
-				"method": "GET"
-			},
-			{
-				"id": "bd19525b-3372-41b6-8783-67f04493fe78",
-				"method": "DELETE"
-			},
-			{
-				"id": "a4ef1fc6-d345-4714-a59d-021fe872bf08",
-				"method": "DELETE"
-			},
-			{
-				"id": "3cd97958-7cab-4a78-96a1-5df755a4bb9c",
-				"method": "DELETE"
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0c13ff5a-a36a-482a-b972-b743c4c5c6dc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
 			}
-		]
-	}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4c11d4ea-e280-44de-a7f0-f18248ad101d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
 }
