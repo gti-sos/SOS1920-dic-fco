@@ -128,48 +128,6 @@
 			"response": []
 		},
 		{
-			"name": "post cbp fallo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "1e6bfa61-0921-4fb6-8e4f-0938a5db6f5d",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"country\": \"Germany\",\r\n\"year\": 2020,\r\n\"yfed\": 169,\r\n\"pwp\": 1.07,\r\n\"aapc\": 0.41\r\n}",
-					"options": {
-						"raw": {
-							"language": "text"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/api/v1/cbp",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"cbp"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "post cbp/country",
 			"event": [
 				{
