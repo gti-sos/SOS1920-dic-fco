@@ -31,10 +31,7 @@
 	let years = [];
 	let currentCountry = "-";
 	let currentYear = "-";
-	const res = await fetch("/api/v1/cbp/loadInitialData");
-	const json = await res.json();
-	elements= json;
-	let numberElementsPages = elements.length;
+	let numberElementsPages = 300;
 	let offset =0;
 	let offset2=0;
 	let currentPage = 1;
