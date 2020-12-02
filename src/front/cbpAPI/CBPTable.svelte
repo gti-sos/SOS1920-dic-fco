@@ -31,9 +31,11 @@
 	let years = [];
 	let currentCountry = "-";
 	let currentYear = "-";
-
-	let numberElementsPages = 0;
-	let offset = 0;
+	const res = await fetch("/api/v1/cbp/loadInitialData");
+	const json = await res.json();
+	elements= json;
+	let numberElementsPages = elements.length;
+	let offset =0;
 	let offset2=0;
 	let currentPage = 1;
 	let currentPage2 = 1;
@@ -101,9 +103,6 @@
 				const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);
 				console.log("La variable NEXT tiene el estado: " + next.status)
 				const jsonNext = await next.json();
-
-
-
 				if (jsonNext.length == 0 || next.status == 404) {
 					moreData = false;
 				}
