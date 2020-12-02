@@ -35,7 +35,7 @@
 		"/IntegracionExterna":IntegracionExterna,
 		"/IntegracionExterna2":IntegracionExterna2,
 		"/Integrations":Integrations,
-		"/sobremi":sobremi,
+		"/about":sobremi,
 		"*": NotFound
 	};
 </script>

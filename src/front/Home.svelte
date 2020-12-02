@@ -12,7 +12,7 @@
 		<button type="button"   class="btn"  onclick="window.location.href='#/Integrations'">Integraciones</button>
 	</div>
 	<div class="div-home" style="text-align:center;" >
-		<button type="button"   class="btn"  onclick="window.location.href='#/sobremi'">Sobre mi</button>
+		<button type="button"   class="btn"  onclick="window.location.href='#/about'">Sobre mi</button>
 	</div>
 </main>
 <style>
