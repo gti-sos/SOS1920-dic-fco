@@ -230,7 +230,7 @@ module.exports = function (app) {
 	// POST
 	app.post(BASE_API_URL + "/cbp", (req, res) => {
 		var newcbp = req.body;
-		if ((newcbp == "") || (newcbp.country == null) || (newcbp.country == "") || (newcbp.year == null) || (newcbp.year == "") || (newcbp.yfed < 0)) {
+		if ((newcbp == "") || (newcbp.country == null) || (newcbp.country == "") || (newcbp.year == null) || (newcbp.year == "") || (newcbp.year < 0)|| (newcbp.yfed < 0)) {
 			res.sendStatus(400, "BAD REQUEST");
 		} else {
 			db.find({ country: newcbp.country, year: Number(newcbp.year) }, (err, cbp) => {
