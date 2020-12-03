@@ -12,7 +12,7 @@
 </main>
 <body>
 	<div class="div-home">
-		<button type="button" class="btn" onclick="window.location.href='#/IntegracionRLN'">Int. RLN</button>
+		<button type="button" class="btn" onclick="window.location.href='#/IntegracionRNL'">Int. RNL</button>
 		<button type="button" class="btn" onclick="window.location.href='#/IntegracionGrupo10'">Int. Grupo
 			10</button>
 		<button type="button" class="btn" onclick="window.location.href='#/IntegracionGrupo12'">Int. Grupo

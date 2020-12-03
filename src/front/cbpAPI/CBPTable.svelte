@@ -31,7 +31,7 @@
 	let years = [];
 	let currentCountry = "-";
 	let currentYear = "-";
-	let numberElementsPages = 300;
+	let numberElementsPages =5;
 	let offset =0;
 	let offset2=0;
 	let currentPage = 1;
@@ -85,16 +85,17 @@
 
 		console.log("Fetching cbp...");
 		const res = await fetch("/api/v1/cbp?offset=" + numberElementsPages * offset + "&limit=" + numberElementsPages);
+		const aux = await fetch("/api/v1/cbp");
 		if (res.ok) {
 			console.log("Ok:");
 			const json = await res.json();
+			const jsonaux = await aux.json();
 			cbp = json;
-			limitcbp=json;
+			limitcbp=jsonaux;
 			console.log("Received " + cbp.length + " cbp.");
 
 			if (cbp.length != numberElementsPages) {
 				moreData = false;
-				numberElementsPages=limitcbp.length;
 			} else {
 
 				const next = await fetch("/api/v1/cbp?offset=" + numberElementsPages * (offset + 1) + "&limit=" + numberElementsPages);

@@ -55,7 +55,7 @@
             body: JSON.stringify({
                 country: params.country,
                 year: Number(params.year),
-                yfed: updatnedyfed,
+                yfed: updatedyfed,
                 pwp: updatedpwp,
                 aapc: updatedaapc
             }),

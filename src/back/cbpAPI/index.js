@@ -280,7 +280,6 @@ module.exports = function (app) {
 	// DELETE yyyy/XXX/zzz
 
 	app.delete(BASE_API_URL + "/cbp/:country/:year", (req, res) => {
-
 		var country1 = req.params.country;
 		var year1 = req.params.year;
 		db.remove({ country: country1, year: Number(year1) }, {}, function (err, numRemoved) {
@@ -297,7 +296,6 @@ module.exports = function (app) {
 	});
 	// PUT yyyy/XXX/zzz
 	app.put(BASE_API_URL + "/cbp/:country/:year", (req, res) => {
-
 		var country1 = req.params.country;
 		var year1 = req.params.year;
 		var body = req.body;
@@ -305,10 +303,13 @@ module.exports = function (app) {
 		db.find({ country: country1, year: Number(year1) }, (err, cbp) => {
 			deleteIDs(cbp);
 			if (cbp.length >= 1) {
+				if((body.yfed < 0)){
+					res.sendStatus(400, "BAD REQUEST");
+				}else{
 				db.update({ country: country1, year: Number(year1) }, body, (error, numRemoved) => {
 					res.sendStatus(200, "OK");
 				})
-			} else {
+			}} else {
 				res.sendStatus(404, "ERROR. Pais no encontrado.");
 			}
 		});

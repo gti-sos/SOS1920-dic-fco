@@ -13,7 +13,7 @@
 	import CBPPieChart from './cbpAPI/CBPPieChart.svelte';
 
 	//Integraciones
-	import IntegracionRLN from './cbpAPI/IntegracionRLN.svelte';
+	import IntegracionRNL from './cbpAPI/IntegracionRNL.svelte';
 	import IntegracionGrupo10 from './cbpAPI/IntegracionGrupo10.svelte';
 	import IntegracionGrupo12 from './cbpAPI/IntegracionGrupo12.svelte';
 	import IntegracionGrupo29 from './cbpAPI/IntegracionGrupo29.svelte';
@@ -28,7 +28,7 @@
 		"/CBPPieChart":CBPPieChart,
 		"/cbp/:country/:year":Editcbp,
 		"/cbpAPI":cbp, 
-		"/IntegracionRLN":IntegracionRLN,
+		"/IntegracionRNL":IntegracionRNL,
 		"/IntegracionGrupo10":IntegracionGrupo10,
 		"/IntegracionGrupo12":IntegracionGrupo12,
 		"/IntegracionGrupo29":IntegracionGrupo29,
